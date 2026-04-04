@@ -10,7 +10,8 @@
     "2026-04-04_sc_nails": false,
     "2026-04-04_read": false,
     "2026-04-04_swim": false,
-    "2026-04-04_xcore": false
+    "2026-04-04_xcore": false,
+    "2026-04-04_yoga": true
   },
   "scChecks": {
     "2026-04-04_sc_face_sc": false,
@@ -111,7 +112,7 @@
       "xcore": 0,
       "run": 0,
       "gym": 0,
-      "yoga": 0,
+      "yoga": 1,
       "salsa": 0,
       "fun": 0,
       "write": 0,
@@ -119,7 +120,7 @@
       "sc_body": 0,
       "sc_face": 0,
       "sc_nails": 0,
-      "_anyMove": 0,
+      "_anyMove": 1,
       "_anyLang": 1,
       "_anyLearn": 0,
       "_anyCare": 0
