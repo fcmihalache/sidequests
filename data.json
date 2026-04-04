@@ -94,6 +94,43 @@
   "gymN": "",
   "gymSess": [],
   "gymOpt": "",
+  "fixedEvs": {
+    "Mon": [
+      {
+        "n": "Volleyball",
+        "c": "es",
+        "repeat": true
+      },
+      {
+        "n": "XClass",
+        "c": "es",
+        "repeat": true
+      }
+    ],
+    "Tue": [],
+    "Wed": [
+      {
+        "n": "Volleyball",
+        "c": "es",
+        "repeat": true
+      },
+      {
+        "n": "XClass",
+        "c": "es",
+        "repeat": true
+      }
+    ],
+    "Thu": [],
+    "Fri": [],
+    "Sat": [],
+    "Sun": [
+      {
+        "n": "Swimming 13:45",
+        "c": "ek",
+        "repeat": true
+      }
+    ]
+  },
   "custEvs": {
     "Mon": [],
     "Tue": [],
