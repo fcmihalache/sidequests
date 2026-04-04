@@ -3,13 +3,14 @@
     "2026-04-04_es": true,
     "2026-04-04_fr": true,
     "2026-04-04_dutch": false,
-    "2026-04-04_vball": false,
+    "2026-04-04_vball": true,
     "2026-04-04_write": false,
     "2026-04-04_sc_body": false,
     "2026-04-04_sc_face": false,
     "2026-04-04_sc_nails": false,
     "2026-04-04_read": false,
-    "2026-04-04_swim": false
+    "2026-04-04_swim": false,
+    "2026-04-04_xcore": true
   },
   "scChecks": {
     "2026-04-04_sc_face_sc": false,
@@ -110,9 +111,9 @@
       "es": 1,
       "fr": 1,
       "dutch": 0,
-      "vball": 0,
+      "vball": 1,
       "swim": 0,
-      "xcore": 0,
+      "xcore": 1,
       "run": 0,
       "gym": 0,
       "yoga": 0,
@@ -123,7 +124,7 @@
       "sc_body": 0,
       "sc_face": 0,
       "sc_nails": 0,
-      "_anyMove": 0,
+      "_anyMove": 1,
       "_anyLang": 1,
       "_anyLearn": 0,
       "_anyCare": 0
