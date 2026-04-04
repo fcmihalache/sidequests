@@ -1,7 +1,7 @@
 {
   "checks": {
-    "2026-04-04_es": true,
-    "2026-04-04_fr": true,
+    "2026-04-04_es": false,
+    "2026-04-04_fr": false,
     "2026-04-04_dutch": false,
     "2026-04-04_vball": false,
     "2026-04-04_write": false,
@@ -108,8 +108,8 @@
   },
   "history": {
     "2026-04-04": {
-      "es": 1,
-      "fr": 1,
+      "es": 0,
+      "fr": 0,
       "dutch": 0,
       "vball": 0,
       "swim": 0,
@@ -125,7 +125,7 @@
       "sc_face": 0,
       "sc_nails": 0,
       "_anyMove": 0,
-      "_anyLang": 1,
+      "_anyLang": 0,
       "_anyLearn": 0,
       "_anyCare": 0
     }
