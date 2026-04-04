@@ -10,7 +10,7 @@
     "2026-04-04_sc_nails": false,
     "2026-04-04_read": false,
     "2026-04-04_swim": false,
-    "2026-04-04_xcore": true
+    "2026-04-04_xcore": false
   },
   "scChecks": {
     "2026-04-04_sc_face_sc": false,
@@ -113,7 +113,7 @@
       "dutch": 0,
       "vball": 1,
       "swim": 0,
-      "xcore": 1,
+      "xcore": 0,
       "run": 0,
       "gym": 0,
       "yoga": 0,
