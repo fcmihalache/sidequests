@@ -90,18 +90,31 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .wdl{font-size:9px;font-weight:500;color:var(--txt2);text-align:center;margin-bottom:2px;}
 .wdn{font-size:12px;font-weight:500;text-align:center;color:var(--txt);margin-bottom:3px;}
 .tdc .wdl,.tdc .wdn{color:var(--rose-d);}
-.ev{font-size:8px;padding:2px 3px;border-radius:3px;margin-bottom:2px;line-height:1.3;display:flex;align-items:center;gap:1px;}
-.ev-s{background:var(--sage);color:var(--sage-d);}
-.ev-l{background:var(--lav);color:var(--lav-d);}
-.ev-r{background:var(--rose);color:var(--rose-d);}
-.ev-k{background:var(--sky);color:var(--sky-d);}
-.ev-p{background:var(--peach);color:var(--peach-d);}
-.ev-b{background:var(--but);color:var(--but-d);}
-.ev-g{background:var(--grn);color:var(--grn-d);}
-.ev-m{background:var(--rose);color:var(--rose-d);}
-.ev-lbl{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.ev-x{flex-shrink:0;cursor:pointer;font-size:10px;padding:0 1px;color:inherit;background:none;border:none;line-height:1;opacity:.6;}
-.ev-x:active{opacity:1;}
+.ep{font-size:7.5px;padding:1.5px 3px;border-radius:2px;margin-bottom:1.5px;line-height:1.35;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.ep.selected{outline:1.5px solid rgba(0,0,0,0.25);outline-offset:0;}
+.ep.hidden-ev{opacity:0.3;text-decoration:line-through;}
+.ep.es{background:var(--sage);color:var(--sage-d);}
+.ep.ek{background:var(--sky);color:var(--sky-d);}
+.ep.el{background:var(--lav);color:var(--lav-d);}
+.ep.er{background:var(--rose);color:var(--rose-d);}
+.ep.ep2{background:var(--peach);color:var(--peach-d);}
+.ep.eb{background:var(--but);color:var(--but-d);}
+.ep.eg{background:var(--grn);color:var(--grn-d);}
+.ep.em{background:var(--rose);color:var(--rose-d);}
+.del-bar{display:none;margin-bottom:2px;border-radius:2px;overflow:hidden;}
+.del-bar.show{display:flex;}
+.del-cancel{flex:1;font-size:7px;padding:2px 3px;border:none;cursor:pointer;background:rgba(0,0,0,0.07);color:var(--txt2);font-family:inherit;line-height:1.3;}
+.del-edit{flex:1;font-size:7px;padding:2px 3px;border:none;cursor:pointer;background:var(--sky);color:var(--sky-d);font-family:inherit;line-height:1.3;}
+.del-confirm{flex:1;font-size:7px;padding:2px 3px;border:none;cursor:pointer;background:#F09595;color:#501313;font-family:inherit;font-weight:600;line-height:1.3;}
+.del-cancel:active{background:rgba(0,0,0,0.15);}
+.del-edit:active{background:var(--sky-b);color:white;}
+.del-confirm:active{background:#E24B4A;color:white;}
+.edit-form{display:none;margin-bottom:3px;padding:5px;border-radius:4px;background:var(--bg2);border:0.5px solid var(--brd2);}
+.edit-form.show{display:block;}
+.edit-form input,.edit-form select{font-size:11px;padding:3px 6px;border-radius:4px;border:0.5px solid var(--brd2);background:var(--bg);color:var(--txt);width:100%;margin-bottom:4px;font-family:inherit;}
+.edit-form-row{display:flex;gap:4px;}
+.edit-form-row button{font-size:11px;padding:3px 8px;border-radius:4px;border:0.5px solid var(--brd2);background:var(--bg2);color:var(--txt);cursor:pointer;font-family:inherit;}
+.edit-save{background:var(--sage)!important;color:var(--sage-d)!important;border-color:var(--sage-b)!important;}
 .pbar-wrap{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden;margin-top:6px;}
 .pbar{height:100%;border-radius:3px;transition:width .3s;}
 .ms{display:flex;align-items:center;gap:7px;padding:3px 0;font-size:13px;}
@@ -174,16 +187,22 @@ textarea{width:100%;font-size:14px;padding:10px;border-radius:var(--rad-sm);bord
 <div class="nav">
   <button class="nb nb-rose on" onclick="showTab('week',this)">this week</button>
   <button class="nb nb-sage" onclick="showTab('today',this)">today</button>
-  <button class="nb nb-grn" onclick="showTab('history',this)">history</button>
-  <button class="nb nb-lav" onclick="showTab('progress',this)">progress</button>
   <button class="nb nb-peach" onclick="showTab('quests',this)">side quests</button>
+  <button class="nb nb-lav" onclick="showTab('progress',this)">progress</button>
   <button class="nb nb-but" onclick="showTab('gym',this)">gym plan</button>
   <button class="nb nb-sky" onclick="showTab('care',this)">self care</button>
+  <button class="nb nb-grn" onclick="showTab('history',this)">history</button>
 </div>
 
 <!-- WEEK -->
 <div id="tab-week" class="sec on">
   <div class="wgrid" id="wgrid"></div>
+  <div class="slbl">gym plan fit</div>
+  <div class="card" style="margin-bottom:10px">
+    <div style="font-size:13px;color:var(--txt2);margin-bottom:8px">Based on your week, find the 4 best days for the Resistance Focus split.</div>
+    <button class="abtn" onclick="suggestGymDays()" style="width:100%;text-align:center">Suggest gym days for this week</button>
+    <div id="gym-suggest" style="margin-top:10px"></div>
+  </div>
   <div class="slbl">add event</div>
   <div class="card">
     <div style="display:grid;grid-template-columns:1fr 2fr 1fr;gap:6px;margin-bottom:8px">
@@ -192,10 +211,10 @@ textarea{width:100%;font-size:14px;padding:10px;border-radius:var(--rad-sm);bord
       </select>
       <input type="text" id="ev-name" placeholder="Event name">
       <select id="ev-col" style="font-size:13px;padding:6px 4px;border-radius:8px;border:0.5px solid var(--brd2);background:var(--bg);color:var(--txt)">
-        <option value="ev-s">sport</option><option value="ev-l">language</option>
-        <option value="ev-r">self care</option><option value="ev-k">learning</option>
-        <option value="ev-b">gym</option><option value="ev-p">creative</option>
-        <option value="ev-g">fun</option><option value="ev-m">salsa</option>
+        <option value="es">sport</option><option value="el">language</option>
+        <option value="er">self care</option><option value="ek">learning</option>
+        <option value="eb">gym</option><option value="ep2">creative</option>
+        <option value="eg">fun</option><option value="em">salsa</option>
       </select>
     </div>
     <div style="display:flex;gap:6px;margin-bottom:8px">
@@ -223,23 +242,21 @@ textarea{width:100%;font-size:14px;padding:10px;border-radius:var(--rad-sm);bord
   <div class="card sc"><div id="mt"></div></div>
   <div class="slbl">learning &amp; creativity</div>
   <div class="card kc"><div id="lnt"></div></div>
-  <div class="slbl">self care</div>
-  <div class="card rc"><div id="sct"></div></div>
+
 </div>
 
 <!-- HISTORY -->
 <div id="tab-history" class="sec">
-  <div class="slbl">last 12 weeks — languages</div>
-  <div class="card lc" id="hist-lang"></div>
-  <div class="slbl">last 12 weeks — movement</div>
-  <div class="card sc" id="hist-move"></div>
-  <div class="slbl">last 12 weeks — learning</div>
-  <div class="card kc" id="hist-learn"></div>
-  <div class="slbl">last 12 weeks — self care</div>
-  <div class="card rc" id="hist-care"></div>
-  <div style="font-size:12px;color:var(--txt3);margin-top:4px;text-align:center">History builds up as you use the app each day</div>
+  <!-- sub-nav -->
+  <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:1rem" id="hist-nav"></div>
+  <!-- month nav -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem">
+    <button class="abtn" onclick="histMonthAdj(-1)" style="padding:5px 12px">&#8592;</button>
+    <span id="hist-month-lbl" style="font-size:14px;font-weight:500;color:var(--txt)"></span>
+    <button class="abtn" onclick="histMonthAdj(1)" style="padding:5px 12px">&#8594;</button>
+  </div>
+  <div id="hist-content"></div>
 </div>
-
 <!-- PROGRESS -->
 <div id="tab-progress" class="sec">
   <div class="slbl">Spanish — Duolingo</div>
@@ -267,24 +284,34 @@ textarea{width:100%;font-size:14px;padding:10px;border-radius:var(--rad-sm);bord
   </div>
   <div class="slbl">Dutch — Delftse Methode</div>
   <div class="card bc">
-    <div style="font-size:13px;color:var(--but-d);margin-bottom:5px">Course 1 — refresh &nbsp;<a href="/demo/groeneboek/v1/" style="font-size:11px;color:var(--sky-d)">open ↗</a></div>
+    <a href="https://www.nt2school.nl/nl/portal" style="font-size:11px;color:var(--sky-d);display:block;margin-bottom:12px">open nt2school ↗</a>
+
+    <div style="font-size:13px;color:var(--but-d);margin-bottom:5px">Course 1 — refresh</div>
     <div style="display:flex;align-items:center;gap:8px">
-      <input type="range" min="0" max="30" step="1" id="nl1" oninput="updNL()" style="flex:1;accent-color:var(--but-b)">
-      <span id="nl1-l" style="font-size:13px;font-weight:500;color:var(--but-d);min-width:38px">0/30</span>
+      <input type="range" min="0" max="42" step="1" id="nl1" oninput="updNL()" style="flex:1;accent-color:var(--but-b)">
+      <span id="nl1-l" style="font-size:13px;font-weight:500;color:var(--but-d);min-width:38px">0/43</span>
     </div>
-    <div class="pbar-wrap" style="margin-bottom:12px"><div class="pbar" id="nl1-b" style="background:var(--but-b)"></div></div>
-    <div style="font-size:13px;color:var(--but-d);margin-bottom:5px">Course 2 &nbsp;<a href="/demo/tweederonde/v1/" style="font-size:11px;color:var(--sky-d)">open ↗</a></div>
+    <div id="nl1-name" style="font-size:12px;color:var(--but-d);margin:3px 0 12px;font-style:italic;min-height:14px"></div>
+
+    <div style="font-size:13px;color:var(--but-d);margin-bottom:5px">Course 2</div>
     <div style="display:flex;align-items:center;gap:8px">
-      <input type="range" min="0" max="30" step="1" id="nl2" oninput="updNL()" style="flex:1;accent-color:var(--but-b)">
-      <span id="nl2-l" style="font-size:13px;font-weight:500;color:var(--but-d);min-width:38px">0/30</span>
+      <input type="range" min="0" max="42" step="1" id="nl2" oninput="updNL()" style="flex:1;accent-color:var(--but-b)">
+      <span id="nl2-l" style="font-size:13px;font-weight:500;color:var(--but-d);min-width:38px">0/43</span>
     </div>
-    <div class="pbar-wrap" style="margin-bottom:12px"><div class="pbar" id="nl2-b" style="background:var(--but-b)"></div></div>
-    <div style="font-size:13px;color:var(--but-d);margin-bottom:5px">Course 3 — new lessons &nbsp;<a href="/demo/derderonde/v1/" style="font-size:11px;color:var(--sky-d)">open ↗</a></div>
+    <div id="nl2-name" style="font-size:12px;color:var(--but-d);margin:3px 0 12px;font-style:italic;min-height:14px"></div>
+
+    <div style="font-size:13px;color:var(--but-d);margin-bottom:5px">Course 3 — new lessons</div>
     <div style="display:flex;align-items:center;gap:8px">
-      <input type="range" min="0" max="25" step="1" id="nl3" oninput="updNL()" style="flex:1;accent-color:var(--but-b)">
-      <span id="nl3-l" style="font-size:13px;font-weight:500;color:var(--but-d);min-width:38px">0/25</span>
+      <input type="range" min="0" max="15" step="1" id="nl3" oninput="updNL()" style="flex:1;accent-color:var(--but-b)">
+      <span id="nl3-l" style="font-size:13px;font-weight:500;color:var(--but-d);min-width:38px">0/15</span>
     </div>
-    <div class="pbar-wrap"><div class="pbar" id="nl3-b" style="background:var(--but-b)"></div></div>
+    <div id="nl3-name" style="font-size:12px;color:var(--but-d);margin:3px 0 4px;font-style:italic;min-height:14px"></div>
+
+    <div style="margin-top:12px;padding-top:10px;border-top:0.5px solid var(--brd)">
+      <div style="font-size:11px;color:var(--but-d);margin-bottom:4px">Overall progress</div>
+      <div class="pbar-wrap"><div class="pbar" id="nl-total-b" style="background:var(--but-b)"></div></div>
+      <div id="nl-total-l" style="font-size:11px;color:var(--but-d);margin-top:3px">0/101 lessons</div>
+    </div>
   </div>
   <div class="slbl">Running</div>
   <div class="card pc">
@@ -296,9 +323,9 @@ textarea{width:100%;font-size:14px;padding:10px;border-radius:var(--rad-sm);bord
   </div>
   <div class="slbl">Yoga with Adriene</div>
   <div class="card rc">
-    <a class="yla" href="https://youtube.com/playlist?list=PLui6Eyny-UzzWot7-fuGgm92N3EYlJkiD&si=vl-tF0yhPl9U2ysd">30 Days of Yoga ↗</a>
+    <a class="yla" href="https://youtube.com/playlist?list=PLui6Eyny-UzzWot7-fuGgm92N3EYlJkiD&si=vl-tF0yhPl9U2ysd">Prana — A 7 Day Yoga Journey ↗</a>
     <a class="yla" href="https://youtube.com/playlist?list=PLui6Eyny-UzwZrUeDWOQMN9ZpVYNNhuX2&si=Pobh6grC2lq0gd8D">Yoga for Athletes ↗</a>
-    <a class="yla" href="https://youtube.com/playlist?list=PLui6Eyny-UzyQxrCXkO2-Ap_ku_CxPs-5&si=UFOv2w5psFQxMbQD">Morning Yoga ↗</a>
+    <a class="yla" href="https://youtube.com/playlist?list=PLui6Eyny-UzyQxrCXkO2-Ap_ku_CxPs-5&si=UFOv2w5psFQxMbQD">Yoga for Mobility ↗</a>
     <div style="border-top:0.5px solid var(--brd);margin-top:8px;padding-top:8px">
       <div style="font-size:12px;color:var(--rose-d);font-weight:500;margin-bottom:6px">Log a session</div>
       <div style="display:flex;gap:6px;margin-bottom:6px">
@@ -346,19 +373,23 @@ textarea{width:100%;font-size:14px;padding:10px;border-radius:var(--rad-sm);bord
 <div id="tab-gym" class="sec">
   <div class="card bc">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
-      <div style="font-size:15px;font-weight:500;color:var(--but-d)">Natacha Ocean hybrid</div>
-      <span class="pill">paused</span>
+      <div style="font-size:15px;font-weight:500;color:var(--but-d)">Natacha Ocean — Resistance Focus</div>
+      <span class="pill">active</span>
     </div>
-    <div style="font-size:13px;color:var(--but-d);line-height:1.8;margin-bottom:10px">3–4 sessions/week. Paused because gym was packed at 18:00 after work.</div>
-    <div id="gym-opts"></div>
-    <textarea id="gym-notes" placeholder="Plan notes…" oninput="S.gymN=this.value;save()"></textarea>
+    <div style="font-size:12px;color:var(--but-d);margin-bottom:12px;line-height:1.6">7-day split, repeat each week. Rest days = Day 3 &amp; 7.</div>
+    <div id="gym-split"></div>
+    <div style="margin-top:12px;padding-top:10px;border-top:0.5px solid var(--brd)">
+      <div style="font-size:12px;color:var(--but-d);font-weight:500;margin-bottom:4px">Schedule options</div>
+      <div id="gym-opts"></div>
+    </div>
+    <textarea id="gym-notes" placeholder="Notes…" oninput="S.gymN=this.value;save()" style="margin-top:10px"></textarea>
   </div>
-  <div class="slbl">planned sessions</div>
+  <div class="slbl">log a session</div>
   <div class="card">
     <div id="gym-week"></div>
     <div class="irow">
-      <input type="text" id="gym-in" placeholder="e.g. Upper body — Tue 17:00">
-      <button class="abtn" onclick="addGym()">plan</button>
+      <input type="text" id="gym-in" placeholder="e.g. Day 1 — Lower Body">
+      <button class="abtn" onclick="addGym()">log</button>
     </div>
   </div>
 </div>
@@ -446,7 +477,7 @@ function skipToken(){hideTokenModal();setSS('','not connected — data saved loc
 // history: { "2026-04-04": { es:1, fr:0, vball:1, ... } }
 let S=Object.assign({
   checks:{},scChecks:{},
-  espSec:6,espScore:80,espUnit:1,
+  espSec:6,espScore:86,espUnit:2,
   frDays:[],runWeeks:[],nl1:0,nl2:0,nl3:0,
   yogaLog:[
     {date:'Fri Mar 28',label:'Shoulder and Wrists',url:''},
@@ -456,15 +487,24 @@ let S=Object.assign({
   ],
   quests:[
     {id:1,name:'10k steps for 30 days',active:true},
-    {id:2,name:'Take stairs to 12th floor every workday',active:true}
+    {id:2,name:'Take stairs to 12th floor every workday',active:true},
+    {id:3,name:'Salsa classes',active:true},
+    {id:4,name:'Yoga practice',active:true}
   ],
   bookLog:[],readLog:[],gymN:'',gymSess:[],gymOpt:'',
   // custEvs: {Mon:[{n,c,t,repeat}], ...}
+  fixedEvs:{
+    Mon:[{n:'Volleyball',c:'es',repeat:true},{n:'XClass',c:'es',repeat:true}],
+    Tue:[{n:'Volleyball',c:'es',repeat:true}],
+    Wed:[{n:'Volleyball',c:'es',repeat:true},{n:'XClass',c:'es',repeat:true}],
+    Thu:[],Fri:[],Sat:[],
+    Sun:[{n:'Swimming 13:45',c:'ek',repeat:true}]
+  },
   custEvs:{Mon:[],Tue:[],Wed:[],Thu:[],Fri:[],Sat:[],Sun:[]},
   history:{}  // keyed by date string, value = object of habit ids → 0/1
 },JSON.parse(localStorage.getItem('sqv4')||'{}'));
 
-const ESP_SECS=[{sec:6,min:80,max:89},{sec:7,min:100,max:114},{sec:8,min:115,max:129}];
+const ESP_SECS=[{sec:6,min:80,max:99},{sec:7,min:100,max:114},{sec:8,min:115,max:129}];
 const LANG=[
   {id:'es',label:'Spanish — Duolingo',sub:'daily lesson'},
   {id:'fr',label:'French — Babbel',sub:'daily refresh'},
@@ -473,25 +513,69 @@ const LANG=[
 const MOVE_ALL=[
   {id:'vball',label:'Volleyball training',sub:'Mon–Wed + beach season extra'},
   {id:'swim',label:'Swimming class',sub:'Sunday 13:45 Rotterdam — leave ~13:00'},
-  {id:'xcore',label:'XCore class',sub:'after volleyball training'},
+  {id:'xcore',label:'XClass',sub:'after volleyball training'},
   {id:'run',label:'Run',sub:'goal: 1× per week'},
   {id:'gym',label:'Gym session',sub:'Natacha Ocean hybrid'},
   {id:'yoga',label:'Yoga',sub:'any session counts'},
   {id:'salsa',label:'Salsa',sub:''},
-  {id:'fun',label:'Fun activity',sub:'anything active and joyful'}
 ];
 const LEARN=[
   {id:'write',label:'Writing',sub:'book time'},
   {id:'read',label:'Reading',sub:'any amount counts'}
 ];
 const SC_Q=[{id:'sc_body',label:'Body moisturiser'},{id:'sc_face',label:'Face routine'},{id:'sc_nails',label:'Nails check'}];
-const SC_F=[...SC_Q,{id:'sc_hair',label:'Hair care'},{id:'sc_water',label:'Drink enough water'},{id:'sc_read2',label:'Reading time'}];
+const SC_F=[...SC_Q,{id:'sc_hair',label:'Hair care'}];
 const HOME=[{id:'h_bed',label:'Bedroom tidy'},{id:'h_lnd',label:'Laundry'},{id:'h_kit',label:'Kitchen clean'},{id:'h_bath',label:'Bathroom clean'}];
 const GYM_O=[{id:'g1',label:'Early start → gym at 17:00'},{id:'g2',label:'Later evening (after 19:30)'},{id:'g3',label:'Lunchtime if WFH'}];
+const NL3_LESSONS = [
+  "Woorden op reis. Een presentatie door een cursist",
+  "Paradijs met korting","Religie(s) in Nederland",
+  "Alarm, Een worm!","De eerste multinational ter wereld",
+  "Kijken in de keuken","Drie Hollandse denkers",
+  "Vier Hollandse legendes","Nederland een waterlaboratorium",
+  "Sinterklaas voor de rechter",
+  "Van zeehelden / ontdekkingsreizigers tot kolonisators",
+  "Agendapunt: welk museum","Rondje Delft",
+  "Dutch design","Nederland in 2060"
+];
+const NL1_LESSONS = [
+  "Grammatica","Hoe heet je?","Uit welk land kom je?",
+  "Welke dag is het vandaag?","De Nederlandse les","Mijn dag",
+  "Boodschappen doen","Stap voor stap leren","Eet smakelijk",
+  "Hoe kom je naar de les?","De vier seizoenen","Hoe wonen jullie?",
+  "Hoe kom ik daar?","Een leuk weekend","Familie",
+  "Pakje bij de buren","School","Wie doet het huishouden?",
+  "De huisarts","De bank","De mooiste reis","Een dagje uit",
+  "De Nederlandse bevolking","Op de helft",
+  "Trouwen, samenwonen of liever alleen blijven?",
+  "De kaart van Nederland","De politie: (niet) m'n beste vriend!",
+  "Feest vieren","De Randstad","Vrije tijd","Werk","Blijf gezond!",
+  "Mooi Nederland","De papieren","Van republiek naar koninkrijk",
+  "Gelukkige kinderen","De twaalf provincies","De gemeente",
+  "Een beter klimaat begint bij jezelf","Politiek",
+  "De tijden zijn veranderd","Mijn leven in Nederland","De laatste les"
+];
+const NL2_LESSONS = [
+  "Grammatica","Geachte cursist","Nederland, waar ligt dat eigenlijk?",
+  "Een dagje Amsterdam","Het rijtjeshuis","Hoe leer je een taal?",
+  "Op het platteland","Het Koninklijk Huis","Vrijheid van onderwijs",
+  "De kaart nog eens bekeken","We noemen haar Roos","Woonruimte gezocht.",
+  "De Nederlanders maakten Nederland","Zeg maar Piet","Gelijke kansen",
+  "Red de voetbalclub!","Willem van Oranje","Dijken en dammen",
+  "Komt u over een weekje maar terug","Beter laat dan nooit",
+  "Bustocht door Den Haag","De Gouden Eeuw","De Verenigde Staten van Europa?",
+  "Over de helft","Hulp of handel?","Rotterdam doet ’t",
+  "Samen in de spits","Van de wieg tot het graf","Tulpen en gloeilampen",
+  "Goede buren","Goede raad is duur","Brood op de plank",
+  "Heeft u zelf nog vragen?","Laat haar maar schuiven",
+  "Cultuur omdat het moet","Een brede maatschappelijke discussie",
+  "Lieve S.","Coffeeshop Het Hoekje","Nieuwe verhoudingen",
+  "Gastland Nederland","Standpunt.nl","Fietsen: goed voor u!","De tijd vliegt"
+];
 const FIXED_EVS={
-  Mon:[{n:'Volleyball',c:'ev-s'},{n:'XCore',c:'ev-s'}],
+  Mon:[{n:'Volleyball',c:'ev-s'},{n:'XClass',c:'ev-s'}],
   Tue:[{n:'Volleyball',c:'ev-s'}],
-  Wed:[{n:'Volleyball',c:'ev-s'},{n:'XCore',c:'ev-s'}],
+  Wed:[{n:'Volleyball',c:'ev-s'},{n:'XClass',c:'ev-s'}],
   Thu:[],Fri:[],Sat:[],
   Sun:[{n:'Swimming 13:45',c:'ev-k'}]
 };
@@ -506,11 +590,9 @@ function archiveToday(){
   [...LANG,...MOVE_ALL,...LEARN,...SC_Q].forEach(t=>{
     snap[t.id]=S.checks[DS+'_'+t.id]?1:0;
   });
-  // also store whether ANY movement happened
-  snap['_anyMove']=MOVE_ALL.some(t=>S.checks[DS+'_'+t.id])?1:0;
   snap['_anyLang']=LANG.some(t=>S.checks[DS+'_'+t.id])?1:0;
   snap['_anyLearn']=LEARN.some(t=>S.checks[DS+'_'+t.id])?1:0;
-  snap['_anyCare']=SC_Q.some(t=>S.checks[DS+'_'+t.id+'_sc'])?1:0;
+  snap['_anyCare']=SC_F.some(t=>S.scChecks[DS+'_'+t.id+'_sc'])?1:0;
   S.history[DS]=snap;
 }
 
@@ -539,42 +621,197 @@ function getLast84(){
 }
 
 // ── Streak contribution grid ─────────────────────────────────────────
-function renderHabitGrid(containerId, habitId, label, color){
-  const el=document.getElementById(containerId);if(!el)return;
-  const days=getLast84();
-  const streak=calcStreak(habitId);
-  const total=days.filter(d=>S.history[d]&&S.history[d][habitId]).length;
+// ── History state ────────────────────────────────────────────────────
+let _histTab = 'lang';   // current sub-tab id
+let _histMonth = new Date(T.getFullYear(), T.getMonth(), 1); // first day of displayed month
 
-  // month labels — show month name when it changes, across 12 cols
-  const months=[];
-  let lastMonth=-1;
-  for(let col=0;col<12;col++){
-    const d=new Date(T);d.setDate(T.getDate()-(11-col)*7-T.getDay());
-    const m=d.getMonth();
-    months.push(m!==lastMonth?MO[m]:'');
-    lastMonth=m;
+const HIST_TABS = [
+  {id:'lang',  label:'Languages', color:'lav',   habitId:'_lang'},
+  {id:'move',  label:'Movement',  color:'sage',  habitId:'_move'},
+  {id:'read',  label:'Reading',   color:'sky',   habitId:'read'},
+  {id:'write', label:'Writing',   color:'peach', habitId:'write'},
+  {id:'care',  label:'Self care', color:'rose',  habitId:'_anyCare'},
+];
+
+const LANG_IDS    = ['es','fr','dutch'];
+const LANG_LABELS = {es:'Spanish', fr:'French', dutch:'Dutch'};
+const LANG_FLAGS  = {es:'🇪🇸', fr:'🇫🇷', dutch:'🇳🇱'};
+
+const MOVE_IDS = ['vball','swim','xcore','run','gym','yoga','salsa'];
+const MOVE_LABELS = {vball:'Volleyball',swim:'Swimming',xcore:'XClass',run:'Run',gym:'Gym',yoga:'Yoga',salsa:'Salsa'};
+const MOVE_EMOJI  = {vball:'🏐',swim:'🏊',xcore:'🏋️',run:'🏃',gym:'💪',yoga:'🧘',salsa:'💃'};
+
+function histMonthAdj(dir){
+  _histMonth = new Date(_histMonth.getFullYear(), _histMonth.getMonth()+dir, 1);
+  // don't go into future
+  const now = new Date(T.getFullYear(), T.getMonth(), 1);
+  if(_histMonth > now) _histMonth = now;
+  renderHistory();
+}
+
+function getDaysInMonth(year, month){
+  // returns array of date strings for that month
+  const days = [];
+  const d = new Date(year, month, 1);
+  while(d.getMonth() === month){
+    days.push(d.toISOString().split('T')[0]);
+    d.setDate(d.getDate()+1);
   }
+  return days;
+}
 
-  const cells=days.map(d=>{
-    const hit=S.history[d]&&S.history[d][habitId];
-    const lvl=hit?'h2':'';
-    return `<div class="hcell ${lvl}" title="${d}"></div>`;
-  }).join('');
+function calcStreakFor(habitId){
+  let streak = 0;
+  const d = new Date(T);
+  while(true){
+    const k = d.toISOString().split('T')[0];
+    const dayData = S.history && S.history[k];
+    if(!dayData) break;
+    let hit = false;
+    if(habitId === '_move')       hit = MOVE_IDS.some(id => dayData[id]);
+    else if(habitId === '_lang')  hit = LANG_IDS.some(id => dayData[id]);
+    else                          hit = !!dayData[habitId];
+    if(!hit) break;
+    streak++;
+    d.setDate(d.getDate()-1);
+  }
+  return streak;
+}
 
-  el.innerHTML=`
-    <div class="streak-row">
-      <div><div class="streak-num">${streak}</div><div class="streak-lbl">day streak — ${label}</div></div>
-      <div style="text-align:right"><div class="streak-num">${total}</div><div class="streak-lbl">days in 12 weeks</div></div>
-    </div>
-    <div class="hlabels">${months.map(m=>`<div style="flex:1;text-align:center">${m}</div>`).join('')}</div>
-    <div class="hgrid-wrap"><div class="hgrid">${cells}</div></div>`;
+function renderHistNav(){
+  const nav = document.getElementById('hist-nav');
+  if(!nav) return;
+  const colorMap = {sage:'nb-sage',lav:'nb-lav',but:'nb-but',sky:'nb-sky',peach:'nb-peach',rose:'nb-rose'};
+  nav.innerHTML = HIST_TABS.map(t =>
+    `<button class="nb ${colorMap[t.color]||'nb-sage'}${_histTab===t.id?' on':''}" onclick="setHistTab('${t.id}')">${t.label}</button>`
+  ).join('');
+}
+
+function setHistTab(id){
+  _histTab = id;
+  renderHistory();
 }
 
 function renderHistory(){
-  renderHabitGrid('hist-lang','_anyLang','any language','sage');
-  renderHabitGrid('hist-move','_anyMove','any movement','peach');
-  renderHabitGrid('hist-learn','_anyLearn','writing or reading','sky');
-  renderHabitGrid('hist-care','_anyCare','self care','rose');
+  renderHistNav();
+  const lbl = document.getElementById('hist-month-lbl');
+  if(lbl) lbl.textContent = MO[_histMonth.getMonth()] + ' ' + _histMonth.getFullYear();
+
+  const tab = HIST_TABS.find(t=>t.id===_histTab);
+  if(!tab) return;
+  const el = document.getElementById('hist-content');
+  if(!el) return;
+
+  const year = _histMonth.getFullYear();
+  const month = _histMonth.getMonth();
+  const days = getDaysInMonth(year, month);
+  const firstDow = (new Date(year, month, 1).getDay()+6)%7; // Mon=0
+  const streak = calcStreakFor(tab.habitId);
+  const total = days.filter(d=>{
+    const hd = S.history && S.history[d];
+    if(!hd) return false;
+    if(tab.habitId === '_move') return MOVE_IDS.some(id=>hd[id]);
+    if(tab.habitId === '_lang') return LANG_IDS.some(id=>hd[id]);
+    return !!hd[tab.habitId];
+  }).length;
+
+  // Build calendar grid
+  const colorVars = {
+    sage:'var(--sage)','sage-d':'var(--sage-d)',
+    lav:'var(--lav)','lav-d':'var(--lav-d)',
+    but:'var(--but)','but-d':'var(--but-d)',
+    sky:'var(--sky)','sky-d':'var(--sky-d)',
+    peach:'var(--peach)','peach-d':'var(--peach-d)',
+    rose:'var(--rose)','rose-d':'var(--rose-d)',
+  };
+  const bg = colorVars[tab.color] || 'var(--sage)';
+  const fg = colorVars[tab.color+'-d'] || 'var(--sage-d)';
+
+  let calHtml = `<div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;margin-bottom:12px">`;
+  // Day headers
+  ['M','T','W','T','F','S','S'].forEach(d => {
+    calHtml += `<div style="text-align:center;font-size:10px;color:var(--txt3);padding:2px 0">${d}</div>`;
+  });
+  // Empty cells before first day
+  for(let i=0;i<firstDow;i++){
+    calHtml += `<div></div>`;
+  }
+  // Day cells
+  days.forEach(dateStr => {
+    const dom = parseInt(dateStr.split('-')[2]);
+    const hd = S.history && S.history[dateStr];
+    const isToday = dateStr === DS;
+
+    let hit = false;
+    let tooltip = '';
+
+    if(tab.habitId === '_move' && hd){
+      const done = MOVE_IDS.filter(id=>hd[id]);
+      hit = done.length > 0;
+      tooltip = done.map(id=>MOVE_LABELS[id]||id).join(', ');
+    } else if(tab.habitId === '_lang' && hd){
+      const done = LANG_IDS.filter(id=>hd[id]);
+      hit = done.length > 0;
+      tooltip = done.map(id=>LANG_FLAGS[id]+' '+LANG_LABELS[id]).join(', ');
+    } else if(hd){
+      hit = !!hd[tab.habitId];
+    }
+
+    const cellBg = hit ? bg : 'var(--bg3)';
+    const cellFg = hit ? fg : 'var(--txt3)';
+    const border = isToday ? '1.5px solid var(--rose-b)' : '0.5px solid var(--brd)';
+
+    // For movement: show activity initials inside cell
+    let inner = dom;
+    if(tab.habitId === '_move' && hd && hit){
+      const done = MOVE_IDS.filter(id=>hd[id]);
+      if(done.length > 0){
+        const emojis = done.map(id=>MOVE_EMOJI[id]||'●').join('');
+        inner = `<span style="font-size:8px;line-height:1.2;display:block;text-align:center">${dom}</span>`+
+                `<span style="font-size:7px;line-height:1.1;display:block;text-align:center">${emojis}</span>`;
+      }
+    } else if(tab.habitId === '_lang' && hd && hit){
+      const done = LANG_IDS.filter(id=>hd[id]);
+      if(done.length > 0){
+        const flags = done.map(id=>LANG_FLAGS[id]).join('');
+        inner = `<span style="font-size:8px;line-height:1.2;display:block;text-align:center">${dom}</span>`+
+                `<span style="font-size:8px;line-height:1.1;display:block;text-align:center">${flags}</span>`;
+      }
+    }
+
+    calHtml += `<div style="aspect-ratio:1;border-radius:4px;border:${border};background:${cellBg};color:${cellFg};display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:10px;font-weight:500;cursor:default" title="${tooltip}">${inner}</div>`;
+  });
+  calHtml += `</div>`;
+
+  // Stats row
+  const statsHtml = `<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:8px">
+    <div style="background:var(--bg3);border-radius:10px;padding:8px;text-align:center">
+      <div style="font-size:20px;font-weight:500;color:var(--txt)">${streak}</div>
+      <div style="font-size:10px;color:var(--txt2)">day streak</div>
+    </div>
+    <div style="background:var(--bg3);border-radius:10px;padding:8px;text-align:center">
+      <div style="font-size:20px;font-weight:500;color:var(--txt)">${total}</div>
+      <div style="font-size:10px;color:var(--txt2)">days this month</div>
+    </div>
+    <div style="background:var(--bg3);border-radius:10px;padding:8px;text-align:center">
+      <div style="font-size:20px;font-weight:500;color:var(--txt)">${days.length>0?Math.round(total/days.length*100):0}%</div>
+      <div style="font-size:10px;color:var(--txt2)">consistency</div>
+    </div>
+  </div>`;
+
+  // legend for movement and language tabs
+  let legendHtml = '';
+  if(tab.habitId === '_move'){
+    legendHtml = `<div style="font-size:11px;color:var(--txt3);margin-top:4px">`;
+    legendHtml += MOVE_IDS.map(id=>`${MOVE_EMOJI[id]} ${MOVE_LABELS[id]}`).join('&nbsp;&nbsp;');
+    legendHtml += `</div>`;
+  } else if(tab.habitId === '_lang'){
+    legendHtml = `<div style="font-size:12px;color:var(--txt2);margin-top:6px;display:flex;gap:12px;flex-wrap:wrap">`;
+    legendHtml += LANG_IDS.map(id=>`<span>${LANG_FLAGS[id]} ${LANG_LABELS[id]}</span>`).join('');
+    legendHtml += `</div>`;
+  }
+
+  el.innerHTML = `<div class="card">${statsHtml}${calHtml}${legendHtml}</div>`;
 }
 
 // ── Today ─────────────────────────────────────────────────────────────
@@ -603,18 +840,19 @@ function updMvBadge(){
 function tog(id){
   const k=gk(id);S.checks[k]=!S.checks[k];
   archiveToday();save();renderToday();
+  if(document.getElementById('tab-history').classList.contains('on')) renderHistory();
 }
 function togSC(id){
   const k=gk(id+'_sc');S.scChecks[k]=!S.scChecks[k];
   archiveToday();save();renderCare();
+  if(document.getElementById('tab-history').classList.contains('on')) renderHistory();
 }
 
 function renderToday(){
   chkList('lt',LANG);
   chkList('mt',MOVE_ALL);
   chkList('lnt',LEARN);
-  chkList('sct',SC_Q);
-  const all=[...LANG,...MOVE_ALL,...LEARN,...SC_Q];
+  const all=[...LANG,...MOVE_ALL,...LEARN];
   const done=all.filter(t=>S.checks[gk(t.id)]).length;
   document.getElementById('dn').textContent=done;
   document.getElementById('tn').textContent=all.length;
@@ -623,7 +861,182 @@ function renderToday(){
 }
 
 // ── Week ──────────────────────────────────────────────────────────────
+
+let _sel=null;
+function selectEv(type,day,idx,el,dateStr){
+  const key=type+'_'+(dateStr||day)+'_'+idx;
+  if(_sel&&_sel.key===key){clearSel();return;}
+  clearSel(false);
+  _sel={key,type,day,idx,el,dateStr};
+  el.classList.add('selected');
+  const bar=el.nextElementSibling;
+  if(bar&&bar.classList.contains('del-bar'))bar.classList.add('show');
+}
+function clearSel(){
+  if(_sel){
+    if(_sel.el)_sel.el.classList.remove('selected');
+    const bar=_sel.el&&_sel.el.nextElementSibling;
+    if(bar&&bar.classList.contains('del-bar'))bar.classList.remove('show');
+  }
+  _sel=null;
+}
+function confirmDel(){
+  if(!_sel)return;
+  const{type,day,idx}=_sel;_sel=null;
+  if(type==='fixedS'){
+    S.fixedEvs[day].splice(idx,1);
+  } else {
+    S.custEvs[day].splice(idx,1);
+  }
+  save();renderWeek();
+}
+function makeEv(label,cls,type,day,idx,hidden,dateStr){
+  const editBtn=(type==='cust'||type==='fixedS')?`<button class="del-edit" onclick="startEdit('${type}','${day}',${idx})">edit</button>`:'';
+  const restoreRemove=hidden?'restore':'remove';
+  const dsArg=dateStr?`,'${dateStr}'`:'';
+  return `<div class="ep ${cls}${hidden?' hidden-ev':''}" onclick="selectEv('${type}','${day}',${idx},this${dsArg})">${label}</div>`+
+         `<div class="del-bar"><button class="del-cancel" onclick="clearSel()">keep</button>${editBtn}<button class="del-confirm" onclick="confirmDel()">${restoreRemove}</button></div>`+
+         `<div class="edit-form" id="ef-${day}-${idx}">
+           <input type="text" id="ef-name-${day}-${idx}" placeholder="Name">
+           <input type="text" id="ef-time-${day}-${idx}" placeholder="Time (optional)">
+           <select id="ef-col-${day}-${idx}">
+             <option value="es">sport</option><option value="el">language</option>
+             <option value="er">self care</option><option value="ek">learning</option>
+             <option value="eb">gym</option><option value="ep2">creative</option>
+             <option value="eg">fun</option><option value="em">salsa</option>
+           </select>
+           <label style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--txt2);margin-bottom:5px;cursor:pointer">
+             <input type="checkbox" id="ef-rep-${day}-${idx}" style="width:13px;height:13px"> Repeat every week
+           </label>
+           <div class="edit-form-row">
+             <button onclick="cancelEdit('${day}',${idx})">cancel</button>
+             <button class="edit-save" onclick="saveEdit('${type}','${day}',${idx})">save</button>
+           </div>
+         </div>`;
+}
+
+function startEdit(type,day,idx){
+  const arr=type==='fixedS'?S.fixedEvs:S.custEvs;
+  const e=arr[day][idx];if(!e)return;
+  clearSel(false);
+  // populate form
+  document.getElementById('ef-name-'+day+'-'+idx).value=e.n||'';
+  document.getElementById('ef-time-'+day+'-'+idx).value=e.t||'';
+  document.getElementById('ef-col-'+day+'-'+idx).value=e.c||'el';
+  document.getElementById('ef-rep-'+day+'-'+idx).checked=!!e.repeat;
+  // hide del-bar, show edit form
+  const pill=document.querySelector(`[onclick*="selectEv('cust','${day}',${idx}"]`);
+  if(pill&&pill.nextElementSibling)pill.nextElementSibling.classList.remove('show');
+  document.getElementById('ef-'+day+'-'+idx).classList.add('show');
+}
+
+function cancelEdit(day,idx){
+  document.getElementById('ef-'+day+'-'+idx).classList.remove('show');
+}
+
+function saveEdit(type,day,idx){
+  const name=document.getElementById('ef-name-'+day+'-'+idx).value.trim();
+  if(!name)return;
+  const arr=type==='fixedS'?S.fixedEvs:S.custEvs;
+  arr[day][idx].n=name;
+  arr[day][idx].t=document.getElementById('ef-time-'+day+'-'+idx).value.trim();
+  arr[day][idx].c=document.getElementById('ef-col-'+day+'-'+idx).value;
+  arr[day][idx].repeat=document.getElementById('ef-rep-'+day+'-'+idx).checked;
+  save();renderWeek();
+}
+
+// Busyness score per day — higher = busier
+function getDayBusyness(dw){
+  const fixed = S.fixedEvs[dw]||[];
+  const cust  = (S.custEvs[dw]||[]).filter(e=>e.repeat||true);
+  return fixed.length + cust.length;
+}
+
+function suggestGymDays(){
+  const DAYS_ORD = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  // GYM_SPLIT days that need gym (not rest): 1,2,4,5,6
+  // Day 3 and 7 are rest — skip them
+  // We want to assign gym days 1,2,4,5,6 to 4 calendar days
+  // (day 5 = Slow Run so we prefer it on a lighter day too)
+  // Strategy: score each calendar day by busyness, pick 4 lightest,
+  // then assign gym split days in order respecting the rest gaps
+
+  const scores = DAYS_ORD.map(dw=>({dw, busy: getDayBusyness(dw)}));
+  // Sort by busyness ascending
+  const sorted = [...scores].sort((a,b)=>a.busy-b.busy);
+  // Pick 4 least busy days, then sort them back into week order
+  const picked = sorted.slice(0,4).map(d=>d.dw)
+    .sort((a,b)=>DAYS_ORD.indexOf(a)-DAYS_ORD.indexOf(b));
+
+  // Assign gym split days 1,2,4,6 (skip rest days 3&7, combine day5 into day4 slot if needed)
+  const SPLIT_DAYS = [
+    {day:1, label:'Lower Body Strength & Hypertrophy + Run-Specific #1'},
+    {day:2, label:'Upper Body Strength & Hypertrophy'},
+    {day:4, label:'Full Body Power'},
+    {day:6, label:'Full Body Functional Muscle Building'},
+  ];
+
+  const el = document.getElementById('gym-suggest');
+  if(!el) return;
+
+  // Build suggestion
+  let html = '<div style="font-size:13px;margin-bottom:8px;color:var(--txt2)">Suggested schedule:</div>';
+  const assignments = picked.map((dw,i)=>({dw, split: SPLIT_DAYS[i]}));
+
+  // Show all 7 days with suggestion highlighted
+  const DAYS_ALL = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  html += '<div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;margin-bottom:12px">';
+  DAYS_ALL.forEach(dw=>{
+    const busy = getDayBusyness(dw);
+    const assigned = assignments.find(a=>a.dw===dw);
+    const isToday = DAYS_ALL[((new Date().getDay()+6)%7)] === dw;
+    let bg = 'var(--bg3)', fg = 'var(--txt3)', border = 'var(--brd)';
+    if(assigned){ bg='var(--but)'; fg='var(--but-d)'; border='var(--but-b)'; }
+    if(isToday){ border='var(--rose-b)'; }
+    html += `<div style="border-radius:8px;padding:5px 3px;border:0.5px solid ${border};background:${bg};text-align:center">
+      <div style="font-size:9px;font-weight:500;color:${fg}">${dw}</div>
+      ${assigned?`<div style="font-size:7px;color:${fg};margin-top:2px;line-height:1.2">Day ${assigned.split.day}</div>`
+               :`<div style="font-size:7px;color:var(--txt3);margin-top:2px">${busy>0?'busy':'free'}</div>`}
+    </div>`;
+  });
+  html += '</div>';
+
+  // Detail list
+  assignments.forEach(({dw, split})=>{
+    html += `<div style="display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--brd)">
+      <span style="font-size:12px;font-weight:500;color:var(--but-d);min-width:32px">${dw}</span>
+      <div style="flex:1">
+        <div style="font-size:12px;color:var(--txt)">Day ${split.day}</div>
+        <div style="font-size:11px;color:var(--txt2)">${split.label}</div>
+      </div>
+    </div>`;
+  });
+
+  // Add to week button
+  html += `<button class="abtn" onclick="addGymSuggestion()" style="width:100%;text-align:center;margin-top:10px;background:var(--but);color:var(--but-d);border-color:var(--but-b)">Add these to my week</button>`;
+
+  el.innerHTML = html;
+  // Store for addGymSuggestion
+  window._gymSuggestion = assignments;
+}
+
+function addGymSuggestion(){
+  if(!window._gymSuggestion) return;
+  window._gymSuggestion.forEach(({dw, split})=>{
+    if(!S.custEvs[dw]) S.custEvs[dw]=[];
+    // Avoid duplicates
+    const label = 'Day '+split.day;
+    if(!S.custEvs[dw].find(e=>e.n.startsWith(label))){
+      S.custEvs[dw].push({n:label+': '+split.label.split('+')[0].trim(), c:'eb', t:'', repeat:false});
+    }
+  });
+  save(); renderWeek();
+  document.getElementById('gym-suggest').innerHTML = '<div style="font-size:13px;color:var(--sage-d);padding:6px 0">Added to your week!</div>';
+  window._gymSuggestion = null;
+}
+
 function renderWeek(){
+  _sel=null;
   const gr=document.getElementById('wgrid');
   const start=new Date(T);
   start.setDate(T.getDate()-((T.getDay()+6)%7));
@@ -632,17 +1045,34 @@ function renderWeek(){
     const d=new Date(start);d.setDate(start.getDate()+i);
     const dw=WD[d.getDay()];
     const isT=d.toDateString()===T.toDateString();
-    const fixed=(FIXED_EVS[dw]||[]).map(e=>`<div class="ev ${e.c}"><span class="ev-lbl">${e.n}</span></div>`).join('');
-    // show custom events: always show if repeat=true, or if added this week
-    const cust=(S.custEvs[dw]||[]).map((e,ci)=>`<div class="ev ${e.c||'ev-l'}">
-      <span class="ev-lbl">${e.t?e.t+' ':''}${e.n}${e.repeat?' ↻':''}</span>
-      <button class="ev-x" onclick="event.stopPropagation();rmEv('${dw}',${ci})">×</button>
-    </div>`).join('');
+    const dStr=d.toISOString().split('T')[0];
+    const fixed=(S.fixedEvs[dw]||[]).map((e,fi)=>{
+      const cls=(e.c||'es').replace('ev-','').replace('ev','');
+      const lbl=(e.t?e.t+' ':'')+e.n+(e.repeat?' ↻':'');
+      return makeEv(lbl,cls,'fixedS',dw,fi,false);
+    }).join('');
+    const cust=(S.custEvs[dw]||[]).map((e,ci)=>{
+      const cls=(e.c||'ev-l').replace('ev-','').replace('ev','');
+      const lbl=(e.t?e.t+' ':'')+e.n+(e.repeat?' ↻':'');
+      return makeEv(lbl,cls,'cust',dw,ci,false);
+    }).join('');
     h+=`<div class="wday${isT?' tdc':''}"><div class="wdl">${dw}</div><div class="wdn">${d.getDate()}</div>${fixed}${cust}</div>`;
   }
   gr.innerHTML=h;
+  document.onclick=e=>{if(_sel&&!e.target.closest('.ep')&&!e.target.closest('.del-bar'))clearSel();};
 }
 
+
+function resetFixedEvs(){
+  S.fixedEvs={
+    Mon:[{n:'Volleyball',c:'es',repeat:true},{n:'XClass',c:'es',repeat:true}],
+    Tue:[{n:'Volleyball',c:'es',repeat:true}],
+    Wed:[{n:'Volleyball',c:'es',repeat:true},{n:'XClass',c:'es',repeat:true}],
+    Thu:[],Fri:[],Sat:[],
+    Sun:[{n:'Swimming 13:45',c:'ek',repeat:true}]
+  };
+  save();renderWeek();
+}
 function addEv(){
   const day=document.getElementById('ev-day').value;
   const name=document.getElementById('ev-name').value.trim();
@@ -663,36 +1093,66 @@ function rmEv(day,idx){
 }
 
 // ── Progress ──────────────────────────────────────────────────────────
+function fmtDate(d){
+  return d.toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+}
+
 function espProgress(){
   const si=ESP_SECS.find(s=>s.sec===S.espSec)||ESP_SECS[0];
+  // unitsDone = how many units completed before current position
+  // e.g. score 86 unit 2 means: (86-80)*10 + (2-1) = 61 units done
   const unitsDone=(S.espScore-si.min)*10+(S.espUnit-1);
-  const total=(si.max-si.min+1)*10;
-  return{pct:Math.round(unitsDone/total*100),total,done:unitsDone,si};
+  const total=(si.max-si.min+1)*10;  // section 6: (99-80+1)*10 = 200
+  const remaining=total-unitsDone;
+  const finDate=new Date(T);
+  finDate.setDate(finDate.getDate()+remaining);
+  return{pct:Math.round(unitsDone/total*100),total,done:unitsDone,si,remaining,finDate};
 }
 
 function renderProgress(){
-  const{pct,total,done,si}=espProgress();
+  const{pct,total,done,si,remaining,finDate}=espProgress();
   document.getElementById('esp-sec').textContent=S.espSec;
   document.getElementById('esp-sc').textContent=S.espScore;
   document.getElementById('esp-u').textContent=S.espUnit;
   document.getElementById('esp-bar').style.width=pct+'%';
-  document.getElementById('esp-gl').textContent=`Section ${S.espSec}: scores ${si.min}–${si.max} · ${done}/${total} units · ~${total-done} days at 1/day`;
+  document.getElementById('esp-gl').textContent=
+    `Section ${S.espSec}: scores ${si.min}–${si.max} · ${done}/${total} units done · ~${remaining} days left · finish ${fmtDate(finDate)}`;
+
+  // Show only current score's 10 units with estimated dates
   let msH='';
   for(let u=1;u<=10;u++){
-    const d2=u<S.espUnit,c=u===S.espUnit;
-    msH+=`<div class="ms${d2?' done':c?' cur':''}"><div class="msd"></div><div class="msl" style="flex:1">Unit ${u}/10 — score ${S.espScore}</div></div>`;
+    const isPast=u<S.espUnit;
+    const isCur=u===S.espUnit;
+    const posInSection=(S.espScore-si.min)*10+(u-1);
+    const offset=posInSection-done;
+    const unitDate=new Date(T);
+    unitDate.setDate(T.getDate()+offset);
+    const dStr=fmtDate(unitDate);
+    msH+=`<div class="ms${isPast?' done':isCur?' cur':''}">
+      <div class="msd"></div>
+      <div class="msl" style="flex:1">${u}/10 — score ${S.espScore}</div>
+      <div style="font-size:11px;color:${isCur?'var(--sage-d)':'var(--txt3)'};margin-left:6px;${isCur?'font-weight:500':''}">${dStr}</div>
+    </div>`;
   }
   document.getElementById('esp-ms').innerHTML=msH;
   document.getElementById('fr-s').textContent=S.frDays.length;
   miniG('fr-g',S.frDays.length,['M','T','W','T','F','S','S']);
   document.getElementById('run-s').textContent=S.runWeeks.length;
   miniG('run-g',S.runWeeks.length,['W1','W2','W3','W4','W5','W6','W7']);
-  ['nl1','nl2','nl3'].forEach((id,i)=>{
-    const max=[30,30,25][i];const v=S[id]||0;
-    document.getElementById(id).value=v;
-    document.getElementById(id+'-l').textContent=v+'/'+max;
-    document.getElementById(id+'-b').style.width=Math.round(v/max*100)+'%';
+  // Dutch sliders
+  [[S.nl1||0,42,'nl1',NL1_LESSONS,43],[S.nl2||0,42,'nl2',NL2_LESSONS,43],[S.nl3||0,15,'nl3',NL3_LESSONS,15]].forEach(([v,max,id,lessons,total])=>{
+    const el=document.getElementById(id);if(el)el.value=v;
+    const lbl=document.getElementById(id+'-l');if(lbl)lbl.textContent=v+'/'+total;
+    const name=document.getElementById(id+'-name');
+    if(name)name.textContent=v>0&&v<=lessons.length?'Les '+v+': '+lessons[v-1]:'';
   });
+  // Single combined progress bar
+  const totalLessons=43+43+15; // 101
+  const totalDone=(S.nl1||0)+(S.nl2||0)+(S.nl3||0);
+  const tb=document.getElementById('nl-total-b');
+  if(tb)tb.style.width=Math.round(totalDone/totalLessons*100)+'%';
+  const tl=document.getElementById('nl-total-l');
+  if(tl)tl.textContent=totalDone+'/'+totalLessons+' lessons';
   document.getElementById('yoga-log').innerHTML=S.yogaLog.slice(-5).reverse().map(e=>`
     <div style="font-size:13px;padding:3px 0;border-bottom:0.5px solid var(--brd)">
       <span style="color:var(--txt2)">${e.date}</span> —
@@ -716,17 +1176,35 @@ function espAdj(du,ds){
   const si=ESP_SECS.find(s=>s.sec===sec);
   if(si&&sc>si.max){const nx=ESP_SECS.find(s=>s.sec===sec+1);if(nx){sec=nx.sec;sc=nx.min;u=1;}else sc=si.max;}
   if(si&&sc<si.min){const pv=ESP_SECS.find(s=>s.sec===sec-1);if(pv){sec=pv.sec;sc=pv.max;u=10;}else{sc=si.min;u=1;}}
-  S.espSec=sec;S.espScore=sc;S.espUnit=u;save();renderProgress();
+  S.espSec=sec;S.espScore=sc;S.espUnit=u;
+  save();renderProgress();
 }
 function markStreak(t){
   if(t==='fr'&&!S.frDays.includes(DS))S.frDays.push(DS);
-  if(t==='run')S.runWeeks.push(DS);
+  if(t==='run'){
+    // use Monday of current week as the key so you can only log once per week
+    const mon=new Date(T);mon.setDate(T.getDate()-((T.getDay()+6)%7));
+    const wk=mon.toISOString().split('T')[0];
+    if(!S.runWeeks.includes(wk))S.runWeeks.push(wk);
+  }
   save();renderProgress();
 }
 function updNL(){
   S.nl1=parseInt(document.getElementById('nl1').value)||0;
   S.nl2=parseInt(document.getElementById('nl2').value)||0;
   S.nl3=parseInt(document.getElementById('nl3').value)||0;
+  // show lesson name for course 2
+  const nl2name=document.getElementById('nl2-name');
+  if(nl2name){
+    const v=S.nl2;
+    if(v>0 && v<=NL2_LESSONS.length){
+      nl2name.textContent='Les '+v+': '+NL2_LESSONS[v-1];
+    } else if(v===0){
+      nl2name.textContent='';
+    } else {
+      nl2name.textContent='';
+    }
+  }
   save();renderProgress();
 }
 function logYoga(){
@@ -760,16 +1238,38 @@ function togQ(id){const q=S.quests.find(q=>q.id===id);if(q)q.active=!q.active;sa
 function delQ(id){S.quests=S.quests.filter(q=>q.id!==id);save();renderQuests();}
 
 // ── Gym ────────────────────────────────────────────────────────────────
+const GYM_SPLIT = [
+  {day:1, sessions:['Lower Body Strength & Hypertrophy','Run-Specific Gym Training #1']},
+  {day:2, sessions:['Upper Body Strength & Hypertrophy']},
+  {day:3, sessions:[]},
+  {day:4, sessions:['Full Body Power']},
+  {day:5, sessions:['Slow Run #1']},
+  {day:6, sessions:['Full Body Functional Muscle Building']},
+  {day:7, sessions:[]}
+];
+
 function renderGym(){
   document.getElementById('gym-notes').value=S.gymN||'';
-  document.getElementById('gym-opts').innerHTML=GYM_O.map(o=>`<label style="display:flex;align-items:center;gap:8px;padding:5px 0;font-size:14px;color:var(--but-d);cursor:pointer">
+  // Render split
+  const splitEl=document.getElementById('gym-split');
+  if(splitEl){
+    splitEl.innerHTML=GYM_SPLIT.map(d=>{
+      const isRest=d.sessions.length===0;
+      const pills=d.sessions.map(s=>`<span style="font-size:11px;padding:2px 8px;border-radius:10px;background:var(--lav);color:var(--lav-d);margin-right:4px;display:inline-block;margin-bottom:3px">${s}</span>`).join('');
+      return `<div style="display:flex;align-items:flex-start;gap:10px;padding:5px 0;border-bottom:0.5px solid var(--brd)">
+        <span style="font-size:13px;font-weight:500;color:var(--but-d);min-width:42px">Day ${d.day}</span>
+        <div style="flex:1">${isRest?'<span style="font-size:12px;color:var(--txt3)">rest</span>':pills}</div>
+      </div>`;
+    }).join('');
+  }
+  document.getElementById('gym-opts').innerHTML=GYM_O.map(o=>`<label style="display:flex;align-items:center;gap:8px;padding:5px 0;font-size:13px;color:var(--but-d);cursor:pointer">
     <input type="radio" name="go" value="${o.id}" ${S.gymOpt===o.id?'checked':''} onchange="S.gymOpt=this.value;save()"> ${o.label}
   </label>`).join('');
   const gw=document.getElementById('gym-week');
   gw.innerHTML=S.gymSess.length?S.gymSess.map((s,i)=>`<div class="qi">
     <div style="flex:1;font-size:14px">${s}</div>
     <button class="dbtn" onclick="delGS(${i})">×</button>
-  </div>`).join(''):'<div style="font-size:13px;color:var(--txt3);padding:8px 0">No sessions planned yet</div>';
+  </div>`).join(''):'<div style="font-size:13px;color:var(--txt3);padding:8px 0">No sessions logged yet</div>';
 }
 function addGym(){const i=document.getElementById('gym-in');if(!i.value.trim())return;S.gymSess.push(i.value.trim());i.value='';save();renderGym();}
 function delGS(i){S.gymSess.splice(i,1);save();renderGym();}
@@ -804,6 +1304,7 @@ function renderAll(){renderWeek();renderToday();renderProgress();renderQuests();
 const hr=T.getHours();
 document.getElementById('gr').textContent=hr<12?'good morning':hr<18?'good afternoon':'good evening';
 document.getElementById('dc').textContent=WD[T.getDay()]+', '+MO[T.getMonth()]+' '+T.getDate();
+
 
 if(!GH.token||!GH.repo){
   document.getElementById('overlay').classList.remove('hidden');
