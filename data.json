@@ -2,13 +2,14 @@
   "checks": {
     "2026-04-04_es": false,
     "2026-04-04_fr": false,
-    "2026-04-04_dutch": true,
-    "2026-04-04_vball": true,
+    "2026-04-04_dutch": false,
+    "2026-04-04_vball": false,
     "2026-04-04_write": true,
     "2026-04-04_sc_body": true,
     "2026-04-04_sc_face": true,
     "2026-04-04_sc_nails": true,
-    "2026-04-04_read": true
+    "2026-04-04_read": true,
+    "2026-04-04_swim": false
   },
   "scChecks": {
     "2026-04-04_sc_face_sc": false,
