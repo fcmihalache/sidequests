@@ -49,12 +49,12 @@
     {
       "id": 1,
       "name": "10k steps for 30 days",
-      "active": true
+      "active": false
     },
     {
       "id": 2,
       "name": "Take stairs to 12th floor every workday",
-      "active": true
+      "active": false
     }
   ],
   "bookLog": [],
