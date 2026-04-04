@@ -1,7 +1,7 @@
 {
   "checks": {
-    "2026-04-04_es": false,
-    "2026-04-04_fr": false,
+    "2026-04-04_es": true,
+    "2026-04-04_fr": true,
     "2026-04-04_dutch": false,
     "2026-04-04_vball": false,
     "2026-04-04_write": false,
@@ -18,7 +18,6 @@
     "2026-04-04_sc_hair_sc": false,
     "2026-04-04_sc_water_sc": false
   },
-  "streak": 3,
   "espSec": 6,
   "espScore": 86,
   "espUnit": 5,
@@ -105,5 +104,30 @@
     "Fri": [],
     "Sat": [],
     "Sun": []
-  }
+  },
+  "history": {
+    "2026-04-04": {
+      "es": 1,
+      "fr": 1,
+      "dutch": 0,
+      "vball": 0,
+      "swim": 0,
+      "xcore": 0,
+      "run": 0,
+      "gym": 0,
+      "yoga": 0,
+      "salsa": 0,
+      "fun": 0,
+      "write": 0,
+      "read": 0,
+      "sc_body": 0,
+      "sc_face": 0,
+      "sc_nails": 0,
+      "_anyMove": 0,
+      "_anyLang": 1,
+      "_anyLearn": 0,
+      "_anyCare": 0
+    }
+  },
+  "streak": 3
 }
