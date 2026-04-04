@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>my sidequests</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#FFFDF9;--bg2:#F7F4EE;--bg3:#F0ECE4;
+  --txt:#2C2C2A;--txt2:#5F5E5A;--txt3:#888780;
+  --brd:rgba(44,44,42,0.12);--brd2:rgba(44,44,42,0.22);
+  --rose:#FBEAF0;--rose-b:#ED93B1;--rose-d:#72243E;--rose-t:#4B1528;
+  --sage:#E1F5EE;--sage-b:#5DCAA5;--sage-d:#085041;--sage-t:#04342C;
+  --peach:#FAECE7;--peach-b:#F0997B;--peach-d:#712B13;--peach-t:#4A1B0C;
+  --lav:#EEEDFE;--lav-b:#AFA9EC;--lav-d:#3C3489;--lav-t:#26215C;
+  --but:#FAEEDA;--but-b:#EF9F27;--but-d:#633806;--but-t:#412402;
+  --sky:#E6F1FB;--sky-b:#85B7EB;--sky-d:#0C447C;--sky-t:#042C53;
+  --grn:#EAF3DE;--grn-b:#97C459;--grn-d:#27500A;
+  --rad:16px;--rad-sm:10px;--rad-xs:6px;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#1A1916;--bg2:#232220;--bg3:#2C2B28;
+    --txt:#F1EFE8;--txt2:#B4B2A9;--txt3:#888780;
+    --brd:rgba(241,239,232,0.1);--brd2:rgba(241,239,232,0.2);
+    --rose:#3A1E28;--rose-b:#993556;--rose-d:#F4C0D1;--rose-t:#FBEAF0;
+    --sage:#0D2B22;--sage-b:#1D9E75;--sage-d:#9FE1CB;--sage-t:#E1F5EE;
+    --peach:#2E1810;--peach-b:#993C1D;--peach-d:#F5C4B3;--peach-t:#FAECE7;
+    --lav:#1A1838;--lav-b:#534AB7;--lav-d:#CECBF6;--lav-t:#EEEDFE;
+    --but:#2A1E08;--but-b:#854F0B;--but-d:#FAC775;--but-t:#FAEEDA;
+    --sky:#0A1A2E;--sky-b:#185FA5;--sky-d:#B5D4F4;--sky-t:#E6F1FB;
+    --grn:#0F2008;--grn-b:#3B6D11;--grn-d:#C0DD97;
+  }
+}
+html{height:100%;-webkit-text-size-adjust:100%;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);min-height:100%;padding-bottom:80px;}
+.app{max-width:600px;margin:0 auto;padding:1rem 1rem 0;}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
+.greeting{font-size:18px;font-weight:500;}
+.datechip{font-size:12px;color:var(--txt2);background:var(--bg2);padding:4px 12px;border-radius:20px;border:0.5px solid var(--brd);}
+.nav{display:flex;gap:5px;margin-bottom:1.25rem;flex-wrap:wrap;}
+.nb{padding:6px 14px;border-radius:20px;border:0.5px solid var(--brd2);background:transparent;color:var(--txt2);font-size:13px;cursor:pointer;transition:all .15s;-webkit-tap-highlight-color:transparent;}
+.nb.on{font-weight:500;}
+.nb-rose.on{background:var(--rose);color:var(--rose-d);border-color:var(--rose-b);}
+.nb-sage.on{background:var(--sage);color:var(--sage-d);border-color:var(--sage-b);}
+.nb-lav.on{background:var(--lav);color:var(--lav-d);border-color:var(--lav-b);}
+.nb-peach.on{background:var(--peach);color:var(--peach-d);border-color:var(--peach-b);}
+.nb-but.on{background:var(--but);color:var(--but-d);border-color:var(--but-b);}
+.nb-sky.on{background:var(--sky);color:var(--sky-d);border-color:var(--sky-b);}
+.sec{display:none;}.sec.on{display:block;}
+.card{background:var(--bg2);border:0.5px solid var(--brd);border-radius:var(--rad);padding:1rem 1.25rem;margin-bottom:10px;}
+.rc{border-color:var(--rose-b);background:var(--rose);}
+.sc{border-color:var(--sage-b);background:var(--sage);}
+.lc{border-color:var(--lav-b);background:var(--lav);}
+.pc{border-color:var(--peach-b);background:var(--peach);}
+.bc{border-color:var(--but-b);background:var(--but);}
+.kc{border-color:var(--sky-b);background:var(--sky);}
+.slbl{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--txt3);margin:1.25rem 0 .5rem;}
+.pill{font-size:11px;padding:2px 9px;border-radius:10px;font-weight:500;display:inline-block;border:0.5px solid var(--but-b);background:var(--but);color:var(--but-t);}
+.crow{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:0.5px solid var(--brd);cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.crow:last-child{border-bottom:none;}
+.crow input[type=checkbox]{width:18px;height:18px;flex-shrink:0;cursor:pointer;accent-color:var(--sage-b);}
+.clbl{font-size:14px;color:var(--txt);flex:1;line-height:1.4;}
+.clbl.done{text-decoration:line-through;color:var(--txt3);}
+.csub{font-size:11px;color:var(--txt2);margin-top:1px;}
+.statrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:14px;}
+.stat{background:var(--bg3);border-radius:12px;padding:10px;text-align:center;}
+.stn{font-size:22px;font-weight:500;color:var(--txt);}
+.stl{font-size:11px;color:var(--txt2);margin-top:1px;}
+.wgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;margin-bottom:10px;}
+.wday{border-radius:10px;padding:5px 3px 6px;border:0.5px solid var(--brd);background:var(--bg2);min-height:80px;}
+.wday.tdc{border-color:var(--rose-b);background:var(--rose);}
+.wdl{font-size:9px;font-weight:500;color:var(--txt2);text-align:center;margin-bottom:2px;}
+.wdn{font-size:12px;font-weight:500;text-align:center;color:var(--txt);margin-bottom:3px;}
+.tdc .wdl{color:var(--rose-d);}
+.tdc .wdn{color:var(--rose-d);}
+.ev{font-size:8px;padding:2px 3px;border-radius:3px;margin-bottom:2px;line-height:1.3;display:flex;align-items:center;gap:1px;}
+.ev-s{background:var(--sage);color:var(--sage-d);}
+.ev-l{background:var(--lav);color:var(--lav-d);}
+.ev-r{background:var(--rose);color:var(--rose-d);}
+.ev-k{background:var(--sky);color:var(--sky-d);}
+.ev-p{background:var(--peach);color:var(--peach-d);}
+.ev-b{background:var(--but);color:var(--but-d);}
+.ev-g{background:var(--grn);color:var(--grn-d);}
+.ev-m{background:var(--rose);color:var(--rose-d);}
+.ev-lbl{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.ev-x{flex-shrink:0;cursor:pointer;font-size:10px;font-weight:500;padding:0 1px;color:inherit;background:none;border:none;line-height:1;opacity:0.5;}
+.ev-x:hover,.ev-x:active{opacity:1;}
+.pbar-wrap{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden;margin-top:6px;}
+.pbar{height:100%;border-radius:3px;transition:width .3s;}
+.ms{display:flex;align-items:center;gap:7px;padding:3px 0;font-size:13px;}
+.msd{width:12px;height:12px;border-radius:50%;border:1.5px solid var(--brd2);flex-shrink:0;}
+.ms.done .msd{background:var(--sage-b);border-color:var(--sage-b);}
+.ms.cur .msd{border-color:var(--sage-b);}
+.ms.done .msl{text-decoration:line-through;color:var(--txt3);}
+.ms.cur .msl{color:var(--sage-d);font-weight:500;}
+.mgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-top:6px;}
+.mc{aspect-ratio:1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;border:0.5px solid var(--brd);color:var(--txt3);}
+.mc.hit{background:var(--sage);color:var(--sage-d);border-color:var(--sage-b);}
+.qi{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:0.5px solid var(--brd);}
+.qi:last-child{border-bottom:none;}
+.qst{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--brd2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;margin-top:1px;}
+.qst.on{border-color:var(--sage-b);background:var(--sage);}
+.qst.off{border-color:var(--sage-b);background:var(--sage-b);color:white;}
+.irow{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
+.irow input,.irow select{flex:1;min-width:80px;font-size:14px;padding:8px 10px;border-radius:var(--rad-sm);border:0.5px solid var(--brd2);background:var(--bg);color:var(--txt);}
+.abtn{padding:8px 16px;border-radius:var(--rad-sm);border:0.5px solid var(--brd2);background:var(--bg2);color:var(--txt);font-size:14px;cursor:pointer;white-space:nowrap;-webkit-tap-highlight-color:transparent;}
+.abtn:active{background:var(--sage);color:var(--sage-d);border-color:var(--sage-b);}
+.dbtn{background:none;border:none;font-size:18px;color:var(--txt3);cursor:pointer;padding:0 4px;flex-shrink:0;-webkit-tap-highlight-color:transparent;}
+.dbtn:active{color:var(--peach-d);}
+.yla{font-size:14px;color:var(--sky-d);text-decoration:none;display:block;padding:5px 0;}
+.trow{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid var(--brd);}
+.trow:last-child{border-bottom:none;}
+textarea{width:100%;font-size:14px;padding:10px;border-radius:var(--rad-sm);border:0.5px solid var(--brd2);background:var(--bg);color:var(--txt);resize:vertical;min-height:60px;font-family:inherit;}
+input[type=range]{flex:1;accent-color:var(--but-b);}
+input[type=checkbox]{accent-color:var(--rose-b);}
+select{appearance:auto;}
+.hint{font-size:12px;color:var(--txt3);margin-top:5px;}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="topbar">
+  <div class="greeting" id="gr"></div>
+  <div class="datechip" id="dc"></div>
+</div>
+<div class="nav">
+  <button class="nb nb-rose on" onclick="showTab('week',this)">this week</button>
+  <button class="nb nb-sage" onclick="showTab('today',this)">today</button>
+  <button class="nb nb-lav" onclick="showTab('progress',this)">progress</button>
+  <button class="nb nb-peach" onclick="showTab('quests',this)">side quests</button>
+  <button class="nb nb-but" onclick="showTab('gym',this)">gym plan</button>
+  <button class="nb nb-sky" onclick="showTab('care',this)">self care</button>
+</div>
+
+<!-- WEEK -->
+<div id="tab-week" class="sec on">
+  <div class="wgrid" id="wgrid"></div>
+  <div class="slbl">add event</div>
+  <div class="card">
+    <div style="display:grid;grid-template-columns:1fr 2fr 1fr;gap:6px;margin-bottom:8px">
+      <select id="ev-day" style="font-size:13px;padding:6px 6px;">
+        <option>Mon</option><option>Tue</option><option>Wed</option><option>Thu</option><option>Fri</option><option>Sat</option><option>Sun</option>
+      </select>
+      <input type="text" id="ev-name" placeholder="Event name" style="font-size:13px;padding:6px 8px;">
+      <select id="ev-col" style="font-size:13px;padding:6px 4px;">
+        <option value="ev-s">sport</option>
+        <option value="ev-l">language</option>
+        <option value="ev-r">self care</option>
+        <option value="ev-k">learning</option>
+        <option value="ev-b">gym</option>
+        <option value="ev-p">creative</option>
+        <option value="ev-g">fun</option>
+        <option value="ev-m">salsa</option>
+      </select>
+    </div>
+    <div style="display:flex;gap:6px">
+      <input type="text" id="ev-time" placeholder="Time (optional, e.g. 17:00)" style="flex:1;font-size:13px;padding:6px 8px;">
+      <button class="abtn" onclick="addEv()">Add</button>
+    </div>
+    <div class="hint">Tap the × on any event in the grid to remove it</div>
+  </div>
+</div>
+
+<!-- TODAY -->
+<div id="tab-today" class="sec">
+  <div class="statrow">
+    <div class="stat"><div class="stn" id="dn">0</div><div class="stl">done</div></div>
+    <div class="stat"><div class="stn" id="tn">0</div><div class="stl">total</div></div>
+    <div class="stat"><div class="stn" id="sn">0</div><div class="stl">day streak</div></div>
+  </div>
+  <div class="slbl">languages</div>
+  <div class="card lc"><div id="lt"></div></div>
+  <div class="slbl">movement <span id="mv-badge" style="font-size:11px;color:var(--txt3);font-weight:400;text-transform:none;letter-spacing:0">(any 1 = movement day)</span></div>
+  <div class="card sc"><div id="mt"></div></div>
+  <div class="slbl">learning &amp; creativity</div>
+  <div class="card kc"><div id="lnt"></div></div>
+  <div class="slbl">self care</div>
+  <div class="card rc"><div id="sct"></div></div>
+</div>
+
+<!-- PROGRESS -->
+<div id="tab-progress" class="sec">
+  <div class="slbl">Spanish — Duolingo</div>
+  <div class="card sc">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+      <div style="font-size:15px;font-weight:500;color:var(--sage-d)">Section <span id="esp-sec">6</span> · Score <span id="esp-sc">80</span> · Unit <span id="esp-u">1</span>/10</div>
+    </div>
+    <div style="font-size:12px;color:var(--sage-d);margin-bottom:8px" id="esp-gl"></div>
+    <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">
+      <button class="abtn" onclick="espAdj(-1,0)" style="flex:1">− unit</button>
+      <button class="abtn" onclick="espAdj(1,0)" style="flex:1">+ unit</button>
+      <button class="abtn" onclick="espAdj(0,-1)" style="flex:1">− score</button>
+      <button class="abtn" onclick="espAdj(0,1)" style="flex:1">+ score</button>
+    </div>
+    <div class="pbar-wrap"><div class="pbar" id="esp-bar" style="background:var(--sage-b)"></div></div>
+    <div id="esp-ms" style="margin-top:10px"></div>
+  </div>
+
+  <div class="slbl">French — Babbel</div>
+  <div class="card lc">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+      <div style="font-size:15px;font-weight:500;color:var(--lav-d)">streak <span id="fr-s">0</span> days</div>
+      <button class="abtn" onclick="markStreak('fr')">done today</button>
+    </div>
+    <div class="mgrid" id="fr-g"></div>
+  </div>
+
+  <div class="slbl">Dutch — Delftse Methode</div>
+  <div class="card bc">
+    <div style="font-size:13px;color:var(--but-d);margin-bottom:5px">Course 1 — refresh &nbsp;<a href="/demo/groeneboek/v1/" style="font-size:11px;color:var(--sky-d)">open ↗</a></div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <input type="range" min="0" max="30" step="1" id="nl1" oninput="updNL()" style="flex:1;accent-color:var(--but-b)">
+      <span id="nl1-l" style="font-size:13px;font-weight:500;color:var(--but-d);min-width:38px">0/30</span>
+    </div>
+    <div class="pbar-wrap" style="margin-bottom:12px"><div class="pbar" id="nl1-b" style="background:var(--but-b)"></div></div>
+    <div style="font-size:13px;color:var(--but-d);margin-bottom:5px">Course 2 &nbsp;<a href="/demo/tweederonde/v1/" style="font-size:11px;color:var(--sky-d)">open ↗</a></div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <input type="range" min="0" max="30" step="1" id="nl2" oninput="updNL()" style="flex:1;accent-color:var(--but-b)">
+      <span id="nl2-l" style="font-size:13px;font-weight:500;color:var(--but-d);min-width:38px">0/30</span>
+    </div>
+    <div class="pbar-wrap" style="margin-bottom:12px"><div class="pbar" id="nl2-b" style="background:var(--but-b)"></div></div>
+    <div style="font-size:13px;color:var(--but-d);margin-bottom:5px">Course 3 — new lessons &nbsp;<a href="/demo/derderonde/v1/" style="font-size:11px;color:var(--sky-d)">open ↗</a></div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <input type="range" min="0" max="25" step="1" id="nl3" oninput="updNL()" style="flex:1;accent-color:var(--but-b)">
+      <span id="nl3-l" style="font-size:13px;font-weight:500;color:var(--but-d);min-width:38px">0/25</span>
+    </div>
+    <div class="pbar-wrap"><div class="pbar" id="nl3-b" style="background:var(--but-b)"></div></div>
+  </div>
+
+  <div class="slbl">Running</div>
+  <div class="card pc">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+      <div style="font-size:15px;font-weight:500;color:var(--peach-d)"><span id="run-s">0</span> weeks in a row</div>
+      <button class="abtn" onclick="markStreak('run')">ran this week</button>
+    </div>
+    <div class="mgrid" id="run-g"></div>
+  </div>
+
+  <div class="slbl">Yoga with Adriene</div>
+  <div class="card rc">
+    <a class="yla" href="https://youtube.com/playlist?list=PLui6Eyny-UzzWot7-fuGgm92N3EYlJkiD&si=vl-tF0yhPl9U2ysd">30 Days of Yoga ↗</a>
+    <a class="yla" href="https://youtube.com/playlist?list=PLui6Eyny-UzwZrUeDWOQMN9ZpVYNNhuX2&si=Pobh6grC2lq0gd8D">Yoga for Athletes ↗</a>
+    <a class="yla" href="https://youtube.com/playlist?list=PLui6Eyny-UzyQxrCXkO2-Ap_ku_CxPs-5&si=UFOv2w5psFQxMbQD">Morning Yoga ↗</a>
+    <div style="border-top:0.5px solid var(--brd);margin-top:8px;padding-top:8px">
+      <div style="font-size:12px;color:var(--rose-d);font-weight:500;margin-bottom:6px">Log a session</div>
+      <div style="display:flex;gap:6px;margin-bottom:6px">
+        <input type="text" id="yoga-in" placeholder="Name or YouTube link" style="flex:1;font-size:13px;padding:6px 8px;">
+        <button class="abtn" onclick="logYoga()">log</button>
+      </div>
+      <div id="yoga-log"></div>
+    </div>
+  </div>
+
+  <div class="slbl">Writing sessions</div>
+  <div class="card pc">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+      <div style="font-size:15px;font-weight:500;color:var(--peach-d)"><span id="bk-ct">0</span> sessions</div>
+    </div>
+    <div class="mgrid" id="bk-g"></div>
+    <div class="irow">
+      <input type="number" id="bk-w" placeholder="words written (optional)">
+      <button class="abtn" onclick="logBook()">log session</button>
+    </div>
+    <div id="bk-log" style="margin-top:8px"></div>
+  </div>
+
+  <div class="slbl">Reading</div>
+  <div class="card kc">
+    <div id="rd-log"></div>
+    <div class="irow">
+      <input type="text" id="rd-in" placeholder="book or note">
+      <button class="abtn" onclick="logRead()">log</button>
+    </div>
+  </div>
+</div>
+
+<!-- QUESTS -->
+<div id="tab-quests" class="sec">
+  <div class="slbl">active challenges</div>
+  <div class="card">
+    <div id="qlist"></div>
+    <div class="irow">
+      <input type="text" id="q-in" placeholder="new challenge…">
+      <button class="abtn" onclick="addQ()">add</button>
+    </div>
+  </div>
+</div>
+
+<!-- GYM -->
+<div id="tab-gym" class="sec">
+  <div class="card bc">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+      <div style="font-size:15px;font-weight:500;color:var(--but-d)">Natacha Ocean hybrid</div>
+      <span class="pill">paused</span>
+    </div>
+    <div style="font-size:13px;color:var(--but-d);line-height:1.8;margin-bottom:10px">3–4 sessions/week. Paused because gym was packed at 18:00 after work.</div>
+    <div id="gym-opts"></div>
+    <textarea id="gym-notes" placeholder="Plan notes…" oninput="S.gymN=this.value;save()"></textarea>
+  </div>
+  <div class="slbl">planned sessions</div>
+  <div class="card">
+    <div id="gym-week"></div>
+    <div class="irow">
+      <input type="text" id="gym-in" placeholder="e.g. Upper body — Tue 17:00">
+      <button class="abtn" onclick="addGym()">plan</button>
+    </div>
+  </div>
+</div>
+
+<!-- CARE -->
+<div id="tab-care" class="sec">
+  <div class="slbl">daily rituals</div>
+  <div class="card rc"><div id="sc-full"></div></div>
+  <div class="slbl">home</div>
+  <div class="card"><div id="hm-full"></div></div>
+</div>
+</div>
+
+<script>
+const T=new Date();
+const DS=T.toISOString().split('T')[0];
+const WD=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function LS(k,d){try{const v=localStorage.getItem(k);return v!==null?JSON.parse(v):d;}catch{return d;}}
+function save(){try{localStorage.setItem('sqv4',JSON.stringify(S));}catch{}}
+
+const ESP_SECS=[{sec:6,min:80,max:89},{sec:7,min:100,max:114},{sec:8,min:115,max:129}];
+
+let S=LS('sqv4',{
+  checks:{},scChecks:{},streak:3,
+  espSec:6,espScore:80,espUnit:1,
+  frDays:[],runWeeks:[],nl1:0,nl2:0,nl3:0,
+  yogaLog:[
+    {date:'Fri Mar 28',label:'Shoulder and Wrists',url:''},
+    {date:'Sat Mar 29',label:'Upper Back and Neck Mobility',url:''},
+    {date:'Sun Mar 30',label:'Lower Back Mobility',url:''},
+    {date:'Mon Mar 31',label:'Morning Mobility',url:''}
+  ],
+  quests:[
+    {id:1,name:'10k steps for 30 days',active:true},
+    {id:2,name:'Take stairs to 12th floor every workday',active:true}
+  ],
+  bookLog:[],readLog:[],gymN:'',gymSess:[],gymOpt:'',
+  custEvs:{Mon:[],Tue:[],Wed:[],Thu:[],Fri:[],Sat:[],Sun:[]}
+});
+
+const LANG=[
+  {id:'es',label:'Spanish — Duolingo',sub:'daily lesson'},
+  {id:'fr',label:'French — Babbel',sub:'daily refresh'},
+  {id:'dutch',label:'Dutch — Delftse Methode',sub:'Book 1 review or Book 3 lesson'}
+];
+const MOVE_ALL=[
+  {id:'vball',label:'Volleyball training',sub:'Mon–Wed + beach season extra'},
+  {id:'swim',label:'Swimming class',sub:'Sunday 13:45 Rotterdam — leave ~13:00'},
+  {id:'xcore',label:'XCore class',sub:'after volleyball training'},
+  {id:'run',label:'Run',sub:'goal: 1× per week'},
+  {id:'gym',label:'Gym session',sub:'Natacha Ocean hybrid'},
+  {id:'yoga',label:'Yoga',sub:'any session counts'},
+  {id:'salsa',label:'Salsa',sub:''},
+  {id:'fun',label:'Fun activity',sub:'anything active and joyful'}
+];
+const LEARN=[
+  {id:'write',label:'Writing',sub:'book time'},
+  {id:'read',label:'Reading',sub:'any amount counts'}
+];
+const SC_Q=[{id:'sc_body',label:'Body moisturiser'},{id:'sc_face',label:'Face routine'},{id:'sc_nails',label:'Nails check'}];
+const SC_F=[{id:'sc_body',label:'Body moisturiser'},{id:'sc_face',label:'Face routine'},{id:'sc_nails',label:'Nails check'},{id:'sc_hair',label:'Hair care'},{id:'sc_water',label:'Drink enough water'},{id:'sc_read',label:'Reading time'}];
+const HOME=[{id:'h_bed',label:'Bedroom tidy'},{id:'h_lnd',label:'Laundry'},{id:'h_kit',label:'Kitchen clean'},{id:'h_bath',label:'Bathroom clean'}];
+const GYM_O=[{id:'g1',label:'Early start → gym at 17:00'},{id:'g2',label:'Later evening (after 19:30)'},{id:'g3',label:'Lunchtime if WFH'}];
+const FIXED_EVS={
+  Mon:[{n:'Volleyball',c:'ev-s'},{n:'XCore',c:'ev-s'}],
+  Tue:[{n:'Volleyball',c:'ev-s'}],
+  Wed:[{n:'Volleyball',c:'ev-s'},{n:'XCore',c:'ev-s'}],
+  Thu:[],Fri:[],Sat:[],
+  Sun:[{n:'Swimming 13:45',c:'ev-k'}]
+};
+
+function gk(id){return DS+'_'+id;}
+
+function chkList(cid,tasks,isSC){
+  const el=document.getElementById(cid);if(!el)return;
+  el.innerHTML=tasks.map(t=>{
+    const k=gk(t.id+(isSC?'_sc':''));
+    const ch=isSC?S.scChecks[k]:S.checks[k];
+    const fn=isSC?'togSC':'tog';
+    return `<div class="crow" onclick="${fn}('${t.id}')">
+      <input type="checkbox" ${ch?'checked':''} onclick="event.stopPropagation();${fn}('${t.id}')">
+      <div style="flex:1"><div class="clbl${ch?' done':''}">${t.label}</div>${t.sub?`<div class="csub">${t.sub}</div>`:''}</div>
+    </div>`;
+  }).join('');
+  if(cid==='mt')updMvBadge();
+}
+
+function updMvBadge(){
+  const any=MOVE_ALL.some(t=>S.checks[gk(t.id)]);
+  const b=document.getElementById('mv-badge');
+  if(b)b.style.color=any?'var(--sage-d)':'var(--txt3)';
+}
+
+function tog(id){const k=gk(id);S.checks[k]=!S.checks[k];save();renderToday();}
+function togSC(id){const k=gk(id+'_sc');S.scChecks[k]=!S.scChecks[k];save();renderCare();}
+
+function renderToday(){
+  chkList('lt',LANG);
+  chkList('mt',MOVE_ALL);
+  chkList('lnt',LEARN);
+  chkList('sct',SC_Q);
+  const all=[...LANG,...MOVE_ALL,...LEARN,...SC_Q];
+  const done=all.filter(t=>S.checks[gk(t.id)]).length;
+  document.getElementById('dn').textContent=done;
+  document.getElementById('tn').textContent=all.length;
+  document.getElementById('sn').textContent=S.streak;
+}
+
+function renderWeek(){
+  const gr=document.getElementById('wgrid');
+  const start=new Date(T);
+  start.setDate(T.getDate()-((T.getDay()+6)%7));
+  let h='';
+  for(let i=0;i<7;i++){
+    const d=new Date(start);d.setDate(start.getDate()+i);
+    const dw=WD[d.getDay()];
+    const isT=d.toDateString()===T.toDateString();
+    const fixed=(FIXED_EVS[dw]||[]).map(e=>`<div class="ev ${e.c}"><span class="ev-lbl">${e.n}</span></div>`).join('');
+    const cust=(S.custEvs[dw]||[]).map((e,ci)=>`<div class="ev ${e.c||'ev-l'}">
+      <span class="ev-lbl">${e.t?e.t+' ':''}<span>${e.n}</span></span>
+      <button class="ev-x" onclick="event.stopPropagation();rmEv('${dw}',${ci})">×</button>
+    </div>`).join('');
+    h+=`<div class="wday${isT?' tdc':''}"><div class="wdl">${dw}</div><div class="wdn">${d.getDate()}</div>${fixed}${cust}</div>`;
+  }
+  gr.innerHTML=h;
+}
+
+function addEv(){
+  const day=document.getElementById('ev-day').value;
+  const name=document.getElementById('ev-name').value.trim();
+  const col=document.getElementById('ev-col').value;
+  const time=document.getElementById('ev-time').value.trim();
+  if(!name)return;
+  if(!S.custEvs[day])S.custEvs[day]=[];
+  S.custEvs[day].push({n:name,c:col,t:time});
+  document.getElementById('ev-name').value='';
+  document.getElementById('ev-time').value='';
+  save();renderWeek();
+}
+function rmEv(day,idx){S.custEvs[day].splice(idx,1);save();renderWeek();}
+
+function espProgress(){
+  const si=ESP_SECS.find(s=>s.sec===S.espSec)||ESP_SECS[0];
+  const totalScores=si.max-si.min+1;
+  const unitsDone=(S.espScore-si.min)*10+(S.espUnit-1);
+  const total=totalScores*10;
+  return{pct:Math.round(unitsDone/total*100),total,done:unitsDone,si};
+}
+
+function renderProgress(){
+  const{pct,total,done,si}=espProgress();
+  document.getElementById('esp-sec').textContent=S.espSec;
+  document.getElementById('esp-sc').textContent=S.espScore;
+  document.getElementById('esp-u').textContent=S.espUnit;
+  document.getElementById('esp-bar').style.width=pct+'%';
+  document.getElementById('esp-gl').textContent=`Section ${S.espSec}: scores ${si.min}–${si.max} · ${done}/${total} units · ~${total-done} days at 1/day`;
+  let msH='';
+  for(let u=1;u<=10;u++){
+    const d2=u<S.espUnit,c=u===S.espUnit;
+    msH+=`<div class="ms${d2?' done':c?' cur':''}"><div class="msd"></div><div class="msl" style="flex:1">Unit ${u}/10 — score ${S.espScore}</div></div>`;
+  }
+  document.getElementById('esp-ms').innerHTML=msH;
+  document.getElementById('fr-s').textContent=S.frDays.length;
+  miniG('fr-g',S.frDays.length,['M','T','W','T','F','S','S']);
+  document.getElementById('run-s').textContent=S.runWeeks.length;
+  miniG('run-g',S.runWeeks.length,['W1','W2','W3','W4','W5','W6','W7']);
+  ['nl1','nl2','nl3'].forEach((id,i)=>{
+    const max=[30,30,25][i];const v=S[id];
+    document.getElementById(id).value=v;
+    document.getElementById(id+'-l').textContent=v+'/'+max;
+    document.getElementById(id+'-b').style.width=Math.round(v/max*100)+'%';
+  });
+  const yl=document.getElementById('yoga-log');
+  yl.innerHTML=S.yogaLog.slice(-5).reverse().map(e=>`<div style="font-size:13px;padding:3px 0;border-bottom:0.5px solid var(--brd)">
+    <span style="color:var(--txt2)">${e.date}</span> — 
+    ${e.url?`<a href="${e.url}" style="color:var(--sky-d);text-decoration:none">${e.label}</a>`:`<span>${e.label}</span>`}
+  </div>`).join('');
+  document.getElementById('bk-ct').textContent=S.bookLog.length;
+  miniG('bk-g',S.bookLog.length);
+  document.getElementById('bk-log').innerHTML=S.bookLog.slice(-3).reverse().map(e=>`<div style="font-size:12px;color:var(--txt2);padding:2px 0">${e.date}${e.w?' — '+e.w+' words':''}</div>`).join('');
+  document.getElementById('rd-log').innerHTML=S.readLog.slice(-5).reverse().map(e=>`<div style="font-size:13px;padding:4px 0;border-bottom:0.5px solid var(--brd)">${e.date} — <span style="color:var(--txt2)">${e.label}</span></div>`).join('');
+}
+
+function miniG(id,hits,labels){
+  const el=document.getElementById(id);if(!el)return;
+  const L=labels||['M','T','W','T','F','S','S'];
+  el.innerHTML=L.map((l,i)=>`<div class="mc${i<hits?' hit':''}">${l}</div>`).join('');
+}
+
+function espAdj(du,ds){
+  let{espSec:sec,espScore:sc,espUnit:u}=S;
+  u+=du;
+  if(u>10){u=1;sc++;}
+  if(u<1){u=10;sc--;}
+  sc+=ds;
+  const si=ESP_SECS.find(s=>s.sec===sec);
+  if(si&&sc>si.max){const nx=ESP_SECS.find(s=>s.sec===sec+1);if(nx){sec=nx.sec;sc=nx.min;u=1;}else sc=si.max;}
+  if(si&&sc<si.min){const pv=ESP_SECS.find(s=>s.sec===sec-1);if(pv){sec=pv.sec;sc=pv.max;u=10;}else{sc=si.min;u=1;}}
+  S.espSec=sec;S.espScore=sc;S.espUnit=u;
+  save();renderProgress();
+}
+
+function markStreak(t){
+  if(t==='fr'&&!S.frDays.includes(DS))S.frDays.push(DS);
+  if(t==='run')S.runWeeks.push(DS);
+  save();renderProgress();
+}
+function updNL(){
+  S.nl1=parseInt(document.getElementById('nl1').value)||0;
+  S.nl2=parseInt(document.getElementById('nl2').value)||0;
+  S.nl3=parseInt(document.getElementById('nl3').value)||0;
+  save();renderProgress();
+}
+function logYoga(){
+  const inp=document.getElementById('yoga-in');
+  const v=inp.value.trim();if(!v)return;
+  const d=WD[T.getDay()]+' '+MO[T.getMonth()]+' '+T.getDate();
+  const isURL=v.startsWith('http');
+  S.yogaLog.push({date:d,label:isURL?'Yoga session':v,url:isURL?v:''});
+  inp.value='';save();renderProgress();
+}
+function logBook(){
+  const w=document.getElementById('bk-w').value;
+  S.bookLog.push({date:MO[T.getMonth()]+' '+T.getDate(),w:w||null});
+  document.getElementById('bk-w').value='';
+  save();renderProgress();
+}
+function logRead(){
+  const i=document.getElementById('rd-in');
+  if(!i.value.trim())return;
+  S.readLog.push({date:MO[T.getMonth()]+' '+T.getDate(),label:i.value.trim()});
+  i.value='';save();renderProgress();
+}
+
+function renderQuests(){
+  const el=document.getElementById('qlist');
+  el.innerHTML=S.quests.length?S.quests.map(q=>`<div class="qi">
+    <div class="qst ${q.active?'on':'off'}" onclick="togQ(${q.id})">${q.active?'':'✓'}</div>
+    <div style="flex:1"><div style="font-size:14px;${!q.active?'text-decoration:line-through;color:var(--txt3)':''}">${q.name}</div></div>
+    <button class="dbtn" onclick="delQ(${q.id})">×</button>
+  </div>`).join(''):'<div style="font-size:13px;color:var(--txt3);padding:8px 0">No active challenges</div>';
+}
+function addQ(){const i=document.getElementById('q-in');if(!i.value.trim())return;S.quests.push({id:Date.now(),name:i.value.trim(),active:true});i.value='';save();renderQuests();}
+function togQ(id){const q=S.quests.find(q=>q.id===id);if(q)q.active=!q.active;save();renderQuests();}
+function delQ(id){S.quests=S.quests.filter(q=>q.id!==id);save();renderQuests();}
+
+function renderGym(){
+  document.getElementById('gym-notes').value=S.gymN||'';
+  document.getElementById('gym-opts').innerHTML=GYM_O.map(o=>`<label style="display:flex;align-items:center;gap:8px;padding:5px 0;font-size:14px;color:var(--but-d);cursor:pointer">
+    <input type="radio" name="go" value="${o.id}" ${S.gymOpt===o.id?'checked':''} onchange="S.gymOpt=this.value;save()"> ${o.label}
+  </label>`).join('');
+  const gw=document.getElementById('gym-week');
+  gw.innerHTML=S.gymSess.length?S.gymSess.map((s,i)=>`<div class="qi">
+    <div style="flex:1;font-size:14px">${s}</div>
+    <button class="dbtn" onclick="delGS(${i})">×</button>
+  </div>`).join(''):'<div style="font-size:13px;color:var(--txt3);padding:8px 0">No sessions planned yet</div>';
+}
+function addGym(){const i=document.getElementById('gym-in');if(!i.value.trim())return;S.gymSess.push(i.value.trim());i.value='';save();renderGym();}
+function delGS(i){S.gymSess.splice(i,1);save();renderGym();}
+
+function renderCare(){
+  document.getElementById('sc-full').innerHTML=SC_F.map(t=>{
+    const k=gk(t.id+'_sc');const ch=S.scChecks[k];
+    return `<div class="trow"><span style="font-size:14px">${t.label}</span><input type="checkbox" ${ch?'checked':''} onchange="togSC('${t.id}')" style="width:18px;height:18px;cursor:pointer;accent-color:var(--rose-b)"></div>`;
+  }).join('');
+  document.getElementById('hm-full').innerHTML=HOME.map(t=>{
+    const k=gk(t.id+'_sc');const ch=S.scChecks[k];
+    return `<div class="trow"><span style="font-size:14px">${t.label}</span><input type="checkbox" ${ch?'checked':''} onchange="togSC('${t.id}')" style="width:18px;height:18px;cursor:pointer;accent-color:var(--rose-b)"></div>`;
+  }).join('');
+}
+
+function showTab(name,btn){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  document.getElementById('tab-'+name).classList.add('on');
+  if(btn)btn.classList.add('on');
+  if(name==='week')renderWeek();
+  if(name==='today')renderToday();
+  if(name==='progress')renderProgress();
+  if(name==='quests')renderQuests();
+  if(name==='gym')renderGym();
+  if(name==='care')renderCare();
+}
+
+const h=T.getHours();
+document.getElementById('gr').textContent=h<12?'good morning':h<18?'good afternoon':'good evening';
+document.getElementById('dc').textContent=WD[T.getDay()]+', '+MO[T.getMonth()]+' '+T.getDate();
+renderWeek();
+</script>
+</body>
+</html>
