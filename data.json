@@ -1,0 +1,74 @@
+{
+  "checks": {
+    "2026-04-04_es": false,
+    "2026-04-04_fr": false
+  },
+  "scChecks": {
+    "2026-04-04_sc_face_sc": true,
+    "2026-04-04_sc_body_sc": true,
+    "2026-04-04_sc_nails_sc": true,
+    "2026-04-04_sc_hair_sc": false,
+    "2026-04-04_sc_water_sc": false
+  },
+  "streak": 3,
+  "espSec": 6,
+  "espScore": 86,
+  "espUnit": 5,
+  "frDays": [
+    "2026-04-04"
+  ],
+  "runWeeks": [
+    "2026-04-04"
+  ],
+  "nl1": 0,
+  "nl2": 4,
+  "nl3": 0,
+  "yogaLog": [
+    {
+      "date": "Fri Mar 28",
+      "label": "Shoulder and Wrists",
+      "url": ""
+    },
+    {
+      "date": "Sat Mar 29",
+      "label": "Upper Back and Neck Mobility",
+      "url": ""
+    },
+    {
+      "date": "Sun Mar 30",
+      "label": "Lower Back Mobility",
+      "url": ""
+    },
+    {
+      "date": "Mon Mar 31",
+      "label": "Morning Mobility",
+      "url": ""
+    }
+  ],
+  "quests": [
+    {
+      "id": 1,
+      "name": "10k steps for 30 days",
+      "active": true
+    },
+    {
+      "id": 2,
+      "name": "Take stairs to 12th floor every workday",
+      "active": true
+    }
+  ],
+  "bookLog": [],
+  "readLog": [],
+  "gymN": "",
+  "gymSess": [],
+  "gymOpt": "",
+  "custEvs": {
+    "Mon": [],
+    "Tue": [],
+    "Wed": [],
+    "Thu": [],
+    "Fri": [],
+    "Sat": [],
+    "Sun": []
+  }
+}
