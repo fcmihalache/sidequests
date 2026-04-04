@@ -1,7 +1,9 @@
 {
   "checks": {
-    "2026-04-04_es": false,
-    "2026-04-04_fr": false
+    "2026-04-04_es": true,
+    "2026-04-04_fr": true,
+    "2026-04-04_dutch": true,
+    "2026-04-04_vball": true
   },
   "scChecks": {
     "2026-04-04_sc_face_sc": false,
