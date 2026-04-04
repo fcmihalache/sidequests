@@ -17,7 +17,7 @@
     "2026-04-04_sc_face_sc": false,
     "2026-04-04_sc_body_sc": false,
     "2026-04-04_sc_nails_sc": false,
-    "2026-04-04_sc_hair_sc": false,
+    "2026-04-04_sc_hair_sc": true,
     "2026-04-04_sc_water_sc": false,
     "2026-04-04_sc_read2_sc": false
   },
@@ -159,7 +159,7 @@
       "sc_nails": 0,
       "_anyLang": 1,
       "_anyLearn": 0,
-      "_anyCare": 0
+      "_anyCare": 1
     }
   },
   "streak": 3
