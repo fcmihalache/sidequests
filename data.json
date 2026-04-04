@@ -124,13 +124,7 @@
     "Thu": [],
     "Fri": [],
     "Sat": [],
-    "Sun": [
-      {
-        "n": "Swimming 13:45",
-        "c": "ek",
-        "repeat": true
-      }
-    ]
+    "Sun": []
   },
   "custEvs": {
     "Mon": [],
