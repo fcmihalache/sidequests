@@ -60,7 +60,12 @@
       "active": false
     }
   ],
-  "bookLog": [],
+  "bookLog": [
+    {
+      "date": "Apr 4",
+      "w": null
+    }
+  ],
   "readLog": [],
   "gymN": "",
   "gymSess": [],
