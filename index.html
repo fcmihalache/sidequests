@@ -10,45 +10,36 @@
   --bg:#FFFDF9;--bg2:#F7F4EE;--bg3:#F0ECE4;
   --txt:#2C2C2A;--txt2:#5F5E5A;--txt3:#888780;
   --brd:rgba(44,44,42,0.12);--brd2:rgba(44,44,42,0.22);
-  --rose:#FBEAF0;--rose-b:#ED93B1;--rose-d:#72243E;--rose-t:#4B1528;
-  --sage:#E1F5EE;--sage-b:#5DCAA5;--sage-d:#085041;--sage-t:#04342C;
-  --peach:#FAECE7;--peach-b:#F0997B;--peach-d:#712B13;--peach-t:#4A1B0C;
-  --lav:#EEEDFE;--lav-b:#AFA9EC;--lav-d:#3C3489;--lav-t:#26215C;
+  --rose:#FBEAF0;--rose-b:#ED93B1;--rose-d:#72243E;
+  --sage:#E1F5EE;--sage-b:#5DCAA5;--sage-d:#085041;
+  --peach:#FAECE7;--peach-b:#F0997B;--peach-d:#712B13;
+  --lav:#EEEDFE;--lav-b:#AFA9EC;--lav-d:#3C3489;
   --but:#FAEEDA;--but-b:#EF9F27;--but-d:#633806;--but-t:#412402;
-  --sky:#E6F1FB;--sky-b:#85B7EB;--sky-d:#0C447C;--sky-t:#042C53;
+  --sky:#E6F1FB;--sky-b:#85B7EB;--sky-d:#0C447C;
   --grn:#EAF3DE;--grn-b:#97C459;--grn-d:#27500A;
   --rad:16px;--rad-sm:10px;
 }
-@media(prefers-color-scheme:dark){
-  :root{
-    --bg:#1A1916;--bg2:#232220;--bg3:#2C2B28;
-    --txt:#F1EFE8;--txt2:#B4B2A9;--txt3:#888780;
-    --brd:rgba(241,239,232,0.1);--brd2:rgba(241,239,232,0.2);
-    --rose:#3A1E28;--rose-b:#993556;--rose-d:#F4C0D1;--rose-t:#FBEAF0;
-    --sage:#0D2B22;--sage-b:#1D9E75;--sage-d:#9FE1CB;--sage-t:#E1F5EE;
-    --peach:#2E1810;--peach-b:#993C1D;--peach-d:#F5C4B3;--peach-t:#FAECE7;
-    --lav:#1A1838;--lav-b:#534AB7;--lav-d:#CECBF6;--lav-t:#EEEDFE;
-    --but:#2A1E08;--but-b:#854F0B;--but-d:#FAC775;--but-t:#FAEEDA;
-    --sky:#0A1A2E;--sky-b:#185FA5;--sky-d:#B5D4F4;--sky-t:#E6F1FB;
-    --grn:#0F2008;--grn-b:#3B6D11;--grn-d:#C0DD97;
-  }
-}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#1A1916;--bg2:#232220;--bg3:#2C2B28;
+  --txt:#F1EFE8;--txt2:#B4B2A9;--txt3:#888780;
+  --brd:rgba(241,239,232,0.1);--brd2:rgba(241,239,232,0.2);
+  --rose:#3A1E28;--rose-b:#993556;--rose-d:#F4C0D1;
+  --sage:#0D2B22;--sage-b:#1D9E75;--sage-d:#9FE1CB;
+  --peach:#2E1810;--peach-b:#993C1D;--peach-d:#F5C4B3;
+  --lav:#1A1838;--lav-b:#534AB7;--lav-d:#CECBF6;
+  --but:#2A1E08;--but-b:#854F0B;--but-d:#FAC775;--but-t:#FAEEDA;
+  --sky:#0A1A2E;--sky-b:#185FA5;--sky-d:#B5D4F4;
+  --grn:#0F2008;--grn-b:#3B6D11;--grn-d:#C0DD97;
+}}
 html{height:100%;-webkit-text-size-adjust:100%;}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);min-height:100%;padding-bottom:80px;}
 .app{max-width:600px;margin:0 auto;padding:1rem 1rem 0;}
-
-/* sync bar */
 .syncbar{display:flex;align-items:center;gap:8px;margin-bottom:1rem;padding:8px 12px;border-radius:10px;border:0.5px solid var(--brd);background:var(--bg2);font-size:12px;}
-.sync-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--txt3);}
-.sync-dot.ok{background:#5DCAA5;}
-.sync-dot.err{background:#F0997B;}
-.sync-dot.busy{background:#EF9F27;animation:pulse 1s infinite;}
+.sdot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--txt3);}
+.sdot.ok{background:#5DCAA5;}.sdot.err{background:#F0997B;}.sdot.busy{background:#EF9F27;animation:pulse 1s infinite;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
-.sync-lbl{flex:1;color:var(--txt2);}
-.sync-btn{font-size:11px;padding:3px 9px;border-radius:8px;border:0.5px solid var(--brd2);background:transparent;color:var(--txt2);cursor:pointer;}
-.sync-btn:active{background:var(--bg3);}
-
-/* token setup overlay */
+.slbl2{flex:1;color:var(--txt2);}
+.sbtn{font-size:11px;padding:3px 9px;border-radius:8px;border:0.5px solid var(--brd2);background:transparent;color:var(--txt2);cursor:pointer;}
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:100;padding:1rem;}
 .overlay.hidden{display:none;}
 .modal{background:var(--bg);border-radius:var(--rad);padding:1.5rem;max-width:440px;width:100%;border:0.5px solid var(--brd2);}
@@ -56,17 +47,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .modal p{font-size:13px;color:var(--txt2);line-height:1.6;margin-bottom:12px;}
 .modal ol{font-size:13px;color:var(--txt2);line-height:2;padding-left:18px;margin-bottom:14px;}
 .modal input{width:100%;font-size:14px;padding:9px 12px;border-radius:var(--rad-sm);border:0.5px solid var(--brd2);background:var(--bg2);color:var(--txt);margin-bottom:10px;font-family:monospace;}
-.modal-btns{display:flex;gap:8px;}
-.btn-primary{flex:1;padding:10px;border-radius:var(--rad-sm);border:none;background:var(--sage-b);color:white;font-size:14px;font-weight:500;cursor:pointer;}
-.btn-primary:active{opacity:.85;}
-.btn-secondary{padding:10px 16px;border-radius:var(--rad-sm);border:0.5px solid var(--brd2);background:transparent;color:var(--txt2);font-size:14px;cursor:pointer;}
-.modal-err{font-size:12px;color:var(--peach-d);margin-top:8px;display:none;}
-
+.mbtns{display:flex;gap:8px;}
+.bp{flex:1;padding:10px;border-radius:var(--rad-sm);border:none;background:var(--sage-b);color:white;font-size:14px;font-weight:500;cursor:pointer;}
+.bs{padding:10px 16px;border-radius:var(--rad-sm);border:0.5px solid var(--brd2);background:transparent;color:var(--txt2);font-size:14px;cursor:pointer;}
+.merr{font-size:12px;color:var(--peach-d);margin-top:8px;display:none;}
 .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
 .greeting{font-size:18px;font-weight:500;}
 .datechip{font-size:12px;color:var(--txt2);background:var(--bg2);padding:4px 12px;border-radius:20px;border:0.5px solid var(--brd);}
 .nav{display:flex;gap:5px;margin-bottom:1.25rem;flex-wrap:wrap;}
-.nb{padding:6px 14px;border-radius:20px;border:0.5px solid var(--brd2);background:transparent;color:var(--txt2);font-size:13px;cursor:pointer;transition:all .15s;-webkit-tap-highlight-color:transparent;}
+.nb{padding:6px 14px;border-radius:20px;border:0.5px solid var(--brd2);background:transparent;color:var(--txt2);font-size:13px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
 .nb.on{font-weight:500;}
 .nb-rose.on{background:var(--rose);color:var(--rose-d);border-color:var(--rose-b);}
 .nb-sage.on{background:var(--sage);color:var(--sage-d);border-color:var(--sage-b);}
@@ -74,6 +63,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .nb-peach.on{background:var(--peach);color:var(--peach-d);border-color:var(--peach-b);}
 .nb-but.on{background:var(--but);color:var(--but-d);border-color:var(--but-b);}
 .nb-sky.on{background:var(--sky);color:var(--sky-d);border-color:var(--sky-b);}
+.nb-grn.on{background:var(--grn);color:var(--grn-d);border-color:var(--grn-b);}
 .sec{display:none;}.sec.on{display:block;}
 .card{background:var(--bg2);border:0.5px solid var(--brd);border-radius:var(--rad);padding:1rem 1.25rem;margin-bottom:10px;}
 .rc{border-color:var(--rose-b);background:var(--rose);}
@@ -99,8 +89,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .wday.tdc{border-color:var(--rose-b);background:var(--rose);}
 .wdl{font-size:9px;font-weight:500;color:var(--txt2);text-align:center;margin-bottom:2px;}
 .wdn{font-size:12px;font-weight:500;text-align:center;color:var(--txt);margin-bottom:3px;}
-.tdc .wdl{color:var(--rose-d);}
-.tdc .wdn{color:var(--rose-d);}
+.tdc .wdl,.tdc .wdn{color:var(--rose-d);}
 .ev{font-size:8px;padding:2px 3px;border-radius:3px;margin-bottom:2px;line-height:1.3;display:flex;align-items:center;gap:1px;}
 .ev-s{background:var(--sage);color:var(--sage-d);}
 .ev-l{background:var(--lav);color:var(--lav-d);}
@@ -111,7 +100,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .ev-g{background:var(--grn);color:var(--grn-d);}
 .ev-m{background:var(--rose);color:var(--rose-d);}
 .ev-lbl{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.ev-x{flex-shrink:0;cursor:pointer;font-size:10px;font-weight:500;padding:0 1px;color:inherit;background:none;border:none;line-height:1;opacity:0.6;}
+.ev-x{flex-shrink:0;cursor:pointer;font-size:10px;padding:0 1px;color:inherit;background:none;border:none;line-height:1;opacity:.6;}
 .ev-x:active{opacity:1;}
 .pbar-wrap{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden;margin-top:6px;}
 .pbar{height:100%;border-radius:3px;transition:width .3s;}
@@ -121,9 +110,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .ms.cur .msd{border-color:var(--sage-b);}
 .ms.done .msl{text-decoration:line-through;color:var(--txt3);}
 .ms.cur .msl{color:var(--sage-d);font-weight:500;}
-.mgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-top:6px;}
-.mc{aspect-ratio:1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;border:0.5px solid var(--brd);color:var(--txt3);}
-.mc.hit{background:var(--sage);color:var(--sage-d);border-color:var(--sage-b);}
 .qi{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:0.5px solid var(--brd);}
 .qi:last-child{border-bottom:none;}
 .qst{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--brd2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;margin-top:1px;}
@@ -131,7 +117,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .qst.off{border-color:var(--sage-b);background:var(--sage-b);color:white;}
 .irow{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
 .irow input,.irow select{flex:1;min-width:80px;font-size:14px;padding:8px 10px;border-radius:var(--rad-sm);border:0.5px solid var(--brd2);background:var(--bg);color:var(--txt);font-family:inherit;}
-.abtn{padding:8px 16px;border-radius:var(--rad-sm);border:0.5px solid var(--brd2);background:var(--bg2);color:var(--txt);font-size:14px;cursor:pointer;white-space:nowrap;-webkit-tap-highlight-color:transparent;font-family:inherit;}
+.abtn{padding:8px 16px;border-radius:var(--rad-sm);border:0.5px solid var(--brd2);background:var(--bg2);color:var(--txt);font-size:14px;cursor:pointer;white-space:nowrap;font-family:inherit;-webkit-tap-highlight-color:transparent;}
 .abtn:active{background:var(--sage);color:var(--sage-d);border-color:var(--sage-b);}
 .dbtn{background:none;border:none;font-size:18px;color:var(--txt3);cursor:pointer;padding:0 4px;flex-shrink:0;}
 .dbtn:active{color:var(--peach-d);}
@@ -140,39 +126,47 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .trow:last-child{border-bottom:none;}
 textarea{width:100%;font-size:14px;padding:10px;border-radius:var(--rad-sm);border:0.5px solid var(--brd2);background:var(--bg);color:var(--txt);resize:vertical;min-height:60px;font-family:inherit;}
 .hint{font-size:12px;color:var(--txt3);margin-top:5px;}
+/* streak grid */
+.hgrid-wrap{overflow-x:auto;padding-bottom:4px;}
+.hgrid{display:grid;grid-auto-flow:column;grid-template-rows:repeat(7,12px);gap:2px;width:max-content;}
+.hcell{width:12px;height:12px;border-radius:2px;background:var(--bg3);}
+.hcell.h1{background:#C0DD97;}.hcell.h2{background:#5DCAA5;}.hcell.h3{background:#085041;}
+.hlabels{display:flex;gap:0;margin-bottom:4px;font-size:10px;color:var(--txt3);}
+.streak-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.streak-num{font-size:22px;font-weight:500;color:var(--txt);}
+.streak-lbl{font-size:11px;color:var(--txt2);}
+.mgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-top:6px;}
+.mc{aspect-ratio:1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;border:0.5px solid var(--brd);color:var(--txt3);}
+.mc.hit{background:var(--sage);color:var(--sage-d);border-color:var(--sage-b);}
 </style>
 </head>
 <body>
 
-<!-- TOKEN SETUP OVERLAY -->
 <div class="overlay hidden" id="overlay">
   <div class="modal">
     <h2>Connect to GitHub</h2>
-    <p>Your data will be saved to a <code>data.json</code> file in your repo — synced across all your devices. Your token is stored only in this browser, never in any file.</p>
+    <p>Your data saves to <code>data.json</code> in your repo — synced across all devices. Your token never leaves your browser.</p>
     <ol>
-      <li>Go to GitHub → Settings → Developer settings</li>
+      <li>GitHub → Settings → Developer settings</li>
       <li>Personal access tokens → Tokens (classic)</li>
-      <li>Generate new token → tick <strong>repo</strong> → copy it</li>
+      <li>Generate new token → tick <strong>repo</strong> → copy</li>
     </ol>
-    <input type="password" id="token-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
-    <input type="text" id="repo-input" placeholder="your-username/sidequest" autocomplete="off">
-    <div class="modal-btns">
-      <button class="btn-primary" onclick="saveToken()">Connect</button>
-      <button class="btn-secondary" onclick="skipToken()">Skip for now</button>
+    <input type="password" id="tok-in" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+    <input type="text" id="repo-in" placeholder="yourusername/sidequest" autocomplete="off">
+    <div class="mbtns">
+      <button class="bp" onclick="saveToken()">Connect</button>
+      <button class="bs" onclick="skipToken()">Skip for now</button>
     </div>
-    <div class="modal-err" id="token-err"></div>
+    <div class="merr" id="merr"></div>
   </div>
 </div>
 
 <div class="app">
-
-<!-- SYNC STATUS BAR -->
 <div class="syncbar">
-  <div class="sync-dot" id="sync-dot"></div>
-  <span class="sync-lbl" id="sync-lbl">not connected</span>
-  <button class="sync-btn" onclick="showTokenModal()">settings</button>
+  <div class="sdot" id="sdot"></div>
+  <span class="slbl2" id="slbl2">not connected</span>
+  <button class="sbtn" onclick="showTokenModal()">settings</button>
 </div>
-
 <div class="topbar">
   <div class="greeting" id="gr"></div>
   <div class="datechip" id="dc"></div>
@@ -180,6 +174,7 @@ textarea{width:100%;font-size:14px;padding:10px;border-radius:var(--rad-sm);bord
 <div class="nav">
   <button class="nb nb-rose on" onclick="showTab('week',this)">this week</button>
   <button class="nb nb-sage" onclick="showTab('today',this)">today</button>
+  <button class="nb nb-grn" onclick="showTab('history',this)">history</button>
   <button class="nb nb-lav" onclick="showTab('progress',this)">progress</button>
   <button class="nb nb-peach" onclick="showTab('quests',this)">side quests</button>
   <button class="nb nb-but" onclick="showTab('gym',this)">gym plan</button>
@@ -197,20 +192,20 @@ textarea{width:100%;font-size:14px;padding:10px;border-radius:var(--rad-sm);bord
       </select>
       <input type="text" id="ev-name" placeholder="Event name">
       <select id="ev-col" style="font-size:13px;padding:6px 4px;border-radius:8px;border:0.5px solid var(--brd2);background:var(--bg);color:var(--txt)">
-        <option value="ev-s">sport</option>
-        <option value="ev-l">language</option>
-        <option value="ev-r">self care</option>
-        <option value="ev-k">learning</option>
-        <option value="ev-b">gym</option>
-        <option value="ev-p">creative</option>
-        <option value="ev-g">fun</option>
-        <option value="ev-m">salsa</option>
+        <option value="ev-s">sport</option><option value="ev-l">language</option>
+        <option value="ev-r">self care</option><option value="ev-k">learning</option>
+        <option value="ev-b">gym</option><option value="ev-p">creative</option>
+        <option value="ev-g">fun</option><option value="ev-m">salsa</option>
       </select>
     </div>
-    <div style="display:flex;gap:6px">
-      <input type="text" id="ev-time" placeholder="Time (optional, e.g. 17:00)" style="flex:1">
+    <div style="display:flex;gap:6px;margin-bottom:8px">
+      <input type="text" id="ev-time" placeholder="Time (optional)" style="flex:1">
       <button class="abtn" onclick="addEv()">Add</button>
     </div>
+    <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--txt2);cursor:pointer">
+      <input type="checkbox" id="ev-repeat" style="accent-color:var(--sage-b);width:16px;height:16px">
+      Repeat every week
+    </label>
     <div class="hint">Tap × on any event to remove it</div>
   </div>
 </div>
@@ -218,9 +213,9 @@ textarea{width:100%;font-size:14px;padding:10px;border-radius:var(--rad-sm);bord
 <!-- TODAY -->
 <div id="tab-today" class="sec">
   <div class="statrow">
-    <div class="stat"><div class="stn" id="dn">0</div><div class="stl">done</div></div>
+    <div class="stat"><div class="stn" id="dn">0</div><div class="stl">done today</div></div>
     <div class="stat"><div class="stn" id="tn">0</div><div class="stl">total</div></div>
-    <div class="stat"><div class="stn" id="sn">0</div><div class="stl">day streak</div></div>
+    <div class="stat"><div class="stn" id="cur-streak">0</div><div class="stl">day streak</div></div>
   </div>
   <div class="slbl">languages</div>
   <div class="card lc"><div id="lt"></div></div>
@@ -230,6 +225,19 @@ textarea{width:100%;font-size:14px;padding:10px;border-radius:var(--rad-sm);bord
   <div class="card kc"><div id="lnt"></div></div>
   <div class="slbl">self care</div>
   <div class="card rc"><div id="sct"></div></div>
+</div>
+
+<!-- HISTORY -->
+<div id="tab-history" class="sec">
+  <div class="slbl">last 12 weeks — languages</div>
+  <div class="card lc" id="hist-lang"></div>
+  <div class="slbl">last 12 weeks — movement</div>
+  <div class="card sc" id="hist-move"></div>
+  <div class="slbl">last 12 weeks — learning</div>
+  <div class="card kc" id="hist-learn"></div>
+  <div class="slbl">last 12 weeks — self care</div>
+  <div class="card rc" id="hist-care"></div>
+  <div style="font-size:12px;color:var(--txt3);margin-top:4px;text-align:center">History builds up as you use the app each day</div>
 </div>
 
 <!-- PROGRESS -->
@@ -249,7 +257,6 @@ textarea{width:100%;font-size:14px;padding:10px;border-radius:var(--rad-sm);bord
     <div class="pbar-wrap"><div class="pbar" id="esp-bar" style="background:var(--sage-b)"></div></div>
     <div id="esp-ms" style="margin-top:10px"></div>
   </div>
-
   <div class="slbl">French — Babbel</div>
   <div class="card lc">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
@@ -258,7 +265,6 @@ textarea{width:100%;font-size:14px;padding:10px;border-radius:var(--rad-sm);bord
     </div>
     <div class="mgrid" id="fr-g"></div>
   </div>
-
   <div class="slbl">Dutch — Delftse Methode</div>
   <div class="card bc">
     <div style="font-size:13px;color:var(--but-d);margin-bottom:5px">Course 1 — refresh &nbsp;<a href="/demo/groeneboek/v1/" style="font-size:11px;color:var(--sky-d)">open ↗</a></div>
@@ -280,7 +286,6 @@ textarea{width:100%;font-size:14px;padding:10px;border-radius:var(--rad-sm);bord
     </div>
     <div class="pbar-wrap"><div class="pbar" id="nl3-b" style="background:var(--but-b)"></div></div>
   </div>
-
   <div class="slbl">Running</div>
   <div class="card pc">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
@@ -289,7 +294,6 @@ textarea{width:100%;font-size:14px;padding:10px;border-radius:var(--rad-sm);bord
     </div>
     <div class="mgrid" id="run-g"></div>
   </div>
-
   <div class="slbl">Yoga with Adriene</div>
   <div class="card rc">
     <a class="yla" href="https://youtube.com/playlist?list=PLui6Eyny-UzzWot7-fuGgm92N3EYlJkiD&si=vl-tF0yhPl9U2ysd">30 Days of Yoga ↗</a>
@@ -304,7 +308,6 @@ textarea{width:100%;font-size:14px;padding:10px;border-radius:var(--rad-sm);bord
       <div id="yoga-log"></div>
     </div>
   </div>
-
   <div class="slbl">Writing sessions</div>
   <div class="card pc">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
@@ -317,7 +320,6 @@ textarea{width:100%;font-size:14px;padding:10px;border-radius:var(--rad-sm);bord
     </div>
     <div id="bk-log" style="margin-top:8px"></div>
   </div>
-
   <div class="slbl">Reading</div>
   <div class="card kc">
     <div id="rd-log"></div>
@@ -368,8 +370,7 @@ textarea{width:100%;font-size:14px;padding:10px;border-radius:var(--rad-sm);bord
   <div class="slbl">home</div>
   <div class="card"><div id="hm-full"></div></div>
 </div>
-
-</div><!-- end .app -->
+</div>
 
 <script>
 const T=new Date();
@@ -377,127 +378,76 @@ const DS=T.toISOString().split('T')[0];
 const WD=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 const MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
-// ── GitHub sync config ──────────────────────────────────────────────
-const GH = {
-  get token(){ return localStorage.getItem('gh_token')||''; },
-  get repo(){  return localStorage.getItem('gh_repo')||''; },  // "username/reponame"
-  file: 'data.json'
+// ── GitHub sync ──────────────────────────────────────────────────────
+const GH={
+  get token(){return localStorage.getItem('gh_token')||'';},
+  get repo(){return localStorage.getItem('gh_repo')||'';}
 };
-let currentSha = null;  // GitHub needs this to update an existing file
-let saveTimer  = null;  // debounce: avoid hammering the API on rapid taps
-
-function ghURL(){
-  return `https://api.github.com/repos/${GH.repo}/contents/${GH.file}`;
+let currentSha=null, saveTimer=null;
+function ghURL(){return `https://api.github.com/repos/${GH.repo}/contents/data.json`;}
+function setSS(state,msg){
+  document.getElementById('sdot').className='sdot'+(state?' '+state:'');
+  document.getElementById('slbl2').textContent=msg;
 }
-
-function setSyncStatus(state, msg){
-  const dot = document.getElementById('sync-dot');
-  const lbl = document.getElementById('sync-lbl');
-  dot.className = 'sync-dot' + (state ? ' '+state : '');
-  lbl.textContent = msg;
-}
-
-// Load data.json from GitHub on startup
 async function loadFromGitHub(){
-  if(!GH.token || !GH.repo){ setSyncStatus('','not connected — tap settings'); return; }
-  setSyncStatus('busy','loading from GitHub…');
-  try {
-    const res = await fetch(ghURL(), {
-      headers:{ 'Authorization': `token ${GH.token}` }
-    });
-    if(res.status === 404){
-      // File doesn't exist yet — first run, use defaults and create it
-      setSyncStatus('ok','connected — first sync will create data.json');
-      return;
-    }
-    if(!res.ok) throw new Error(`HTTP ${res.status}`);
-    const json = await res.json();
-    currentSha = json.sha;
-    // GitHub returns content as base64 — decode it
-    const decoded = decodeURIComponent(escape(atob(json.content.replace(/\n/g,''))));
-    const remote = JSON.parse(decoded);
-    // Merge: remote wins, but keep any keys the remote doesn't have yet
-    S = Object.assign({}, S, remote);
-    setSyncStatus('ok', 'synced · ' + new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}));
-  } catch(e){
-    setSyncStatus('err', 'sync failed — using local data');
-    console.error('GitHub load failed', e);
-  }
+  if(!GH.token||!GH.repo){setSS('','not connected — tap settings');return;}
+  setSS('busy','loading from GitHub…');
+  try{
+    const res=await fetch(ghURL(),{headers:{'Authorization':`token ${GH.token}`}});
+    if(res.status===404){setSS('ok','connected — first save will create data.json');return;}
+    if(!res.ok)throw new Error(`HTTP ${res.status}`);
+    const json=await res.json();
+    currentSha=json.sha;
+    const decoded=decodeURIComponent(escape(atob(json.content.replace(/\n/g,''))));
+    const remote=JSON.parse(decoded);
+    S=Object.assign({},S,remote);
+    setSS('ok','synced · '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}));
+  }catch(e){setSS('err','sync failed — using local data');console.error(e);}
 }
-
-// Save data.json to GitHub (debounced 1.5s so rapid taps don't spam)
 function save(){
-  // Always save locally as immediate backup
-  try{ localStorage.setItem('sqv4', JSON.stringify(S)); }catch(e){}
-
-  if(!GH.token || !GH.repo){ return; }
-
+  try{localStorage.setItem('sqv4',JSON.stringify(S));}catch(e){}
+  if(!GH.token||!GH.repo)return;
   clearTimeout(saveTimer);
-  saveTimer = setTimeout(pushToGitHub, 1500);
+  saveTimer=setTimeout(pushToGitHub,1500);
 }
-
 async function pushToGitHub(){
-  setSyncStatus('busy','saving…');
-  try {
-    // base64-encode the JSON (btoa can't handle non-latin chars directly)
-    const content = btoa(unescape(encodeURIComponent(JSON.stringify(S, null, 2))));
-    const body = {
-      message: `update ${new Date().toISOString().slice(0,10)}`,
-      content: content
-    };
-    // If we have a sha, we're updating an existing file; otherwise creating it
-    if(currentSha) body.sha = currentSha;
-
-    const res = await fetch(ghURL(), {
-      method: 'PUT',
-      headers:{
-        'Authorization': `token ${GH.token}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    });
-    if(!res.ok) throw new Error(`HTTP ${res.status}`);
-    const json = await res.json();
-    currentSha = json.content.sha;  // update sha for next save
-    setSyncStatus('ok', 'saved · ' + new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}));
-  } catch(e){
-    setSyncStatus('err','save failed — check connection');
-    console.error('GitHub save failed', e);
-  }
+  setSS('busy','saving…');
+  try{
+    const content=btoa(unescape(encodeURIComponent(JSON.stringify(S,null,2))));
+    const body={message:`update ${DS}`,content};
+    if(currentSha)body.sha=currentSha;
+    const res=await fetch(ghURL(),{method:'PUT',headers:{'Authorization':`token ${GH.token}`,'Content-Type':'application/json'},body:JSON.stringify(body)});
+    if(!res.ok)throw new Error(`HTTP ${res.status}`);
+    const json=await res.json();
+    currentSha=json.content.sha;
+    setSS('ok','saved · '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}));
+  }catch(e){setSS('err','save failed — check connection');console.error(e);}
 }
-
-// ── Token modal ─────────────────────────────────────────────────────
 function showTokenModal(){
-  document.getElementById('token-input').value = GH.token;
-  document.getElementById('repo-input').value  = GH.repo;
-  document.getElementById('token-err').style.display = 'none';
+  document.getElementById('tok-in').value=GH.token;
+  document.getElementById('repo-in').value=GH.repo;
+  document.getElementById('merr').style.display='none';
   document.getElementById('overlay').classList.remove('hidden');
 }
-function hideTokenModal(){
-  document.getElementById('overlay').classList.add('hidden');
-}
+function hideTokenModal(){document.getElementById('overlay').classList.add('hidden');}
 async function saveToken(){
-  const t = document.getElementById('token-input').value.trim();
-  const r = document.getElementById('repo-input').value.trim();
-  const err = document.getElementById('token-err');
-  if(!t || !r){ err.textContent='Please fill in both fields.'; err.style.display='block'; return; }
-  if(!r.includes('/')){ err.textContent='Repo should be "username/reponame"'; err.style.display='block'; return; }
-  localStorage.setItem('gh_token', t);
-  localStorage.setItem('gh_repo',  r);
+  const t=document.getElementById('tok-in').value.trim();
+  const r=document.getElementById('repo-in').value.trim();
+  const err=document.getElementById('merr');
+  if(!t||!r){err.textContent='Please fill in both fields.';err.style.display='block';return;}
+  if(!r.includes('/')){err.textContent='Repo should be "username/reponame"';err.style.display='block';return;}
+  localStorage.setItem('gh_token',t);localStorage.setItem('gh_repo',r);
   hideTokenModal();
-  await loadFromGitHub();
-  renderAll();
+  await loadFromGitHub();renderAll();
 }
-function skipToken(){
-  hideTokenModal();
-  setSyncStatus('', 'not connected — data saved locally only');
-}
+function skipToken(){hideTokenModal();setSS('','not connected — data saved locally only');}
 
-// ── App data ─────────────────────────────────────────────────────────
-let S = Object.assign({
-  checks:{}, scChecks:{}, streak:3,
-  espSec:6, espScore:80, espUnit:1,
-  frDays:[], runWeeks:[], nl1:0, nl2:0, nl3:0,
+// ── Data ─────────────────────────────────────────────────────────────
+// history: { "2026-04-04": { es:1, fr:0, vball:1, ... } }
+let S=Object.assign({
+  checks:{},scChecks:{},
+  espSec:6,espScore:80,espUnit:1,
+  frDays:[],runWeeks:[],nl1:0,nl2:0,nl3:0,
   yogaLog:[
     {date:'Fri Mar 28',label:'Shoulder and Wrists',url:''},
     {date:'Sat Mar 29',label:'Upper Back and Neck Mobility',url:''},
@@ -508,11 +458,12 @@ let S = Object.assign({
     {id:1,name:'10k steps for 30 days',active:true},
     {id:2,name:'Take stairs to 12th floor every workday',active:true}
   ],
-  bookLog:[], readLog:[], gymN:'', gymSess:[], gymOpt:'',
-  custEvs:{Mon:[],Tue:[],Wed:[],Thu:[],Fri:[],Sat:[],Sun:[]}
-}, JSON.parse(localStorage.getItem('sqv4')||'{}'));
+  bookLog:[],readLog:[],gymN:'',gymSess:[],gymOpt:'',
+  // custEvs: {Mon:[{n,c,t,repeat}], ...}
+  custEvs:{Mon:[],Tue:[],Wed:[],Thu:[],Fri:[],Sat:[],Sun:[]},
+  history:{}  // keyed by date string, value = object of habit ids → 0/1
+},JSON.parse(localStorage.getItem('sqv4')||'{}'));
 
-// ── Static data ───────────────────────────────────────────────────────
 const ESP_SECS=[{sec:6,min:80,max:89},{sec:7,min:100,max:114},{sec:8,min:115,max:129}];
 const LANG=[
   {id:'es',label:'Spanish — Duolingo',sub:'daily lesson'},
@@ -521,17 +472,17 @@ const LANG=[
 ];
 const MOVE_ALL=[
   {id:'vball',label:'Volleyball training',sub:'Mon–Wed + beach season extra'},
-  {id:'swim', label:'Swimming class',sub:'Sunday 13:45 Rotterdam — leave ~13:00'},
+  {id:'swim',label:'Swimming class',sub:'Sunday 13:45 Rotterdam — leave ~13:00'},
   {id:'xcore',label:'XCore class',sub:'after volleyball training'},
-  {id:'run',  label:'Run',sub:'goal: 1× per week'},
-  {id:'gym',  label:'Gym session',sub:'Natacha Ocean hybrid'},
-  {id:'yoga', label:'Yoga',sub:'any session counts'},
+  {id:'run',label:'Run',sub:'goal: 1× per week'},
+  {id:'gym',label:'Gym session',sub:'Natacha Ocean hybrid'},
+  {id:'yoga',label:'Yoga',sub:'any session counts'},
   {id:'salsa',label:'Salsa',sub:''},
-  {id:'fun',  label:'Fun activity',sub:'anything active and joyful'}
+  {id:'fun',label:'Fun activity',sub:'anything active and joyful'}
 ];
 const LEARN=[
   {id:'write',label:'Writing',sub:'book time'},
-  {id:'read', label:'Reading',sub:'any amount counts'}
+  {id:'read',label:'Reading',sub:'any amount counts'}
 ];
 const SC_Q=[{id:'sc_body',label:'Body moisturiser'},{id:'sc_face',label:'Face routine'},{id:'sc_nails',label:'Nails check'}];
 const SC_F=[...SC_Q,{id:'sc_hair',label:'Hair care'},{id:'sc_water',label:'Drink enough water'},{id:'sc_read2',label:'Reading time'}];
@@ -545,11 +496,92 @@ const FIXED_EVS={
   Sun:[{n:'Swimming 13:45',c:'ev-k'}]
 };
 
-// ── Helpers ───────────────────────────────────────────────────────────
-function gk(id){ return DS+'_'+id; }
+// ── History helpers ──────────────────────────────────────────────────
+function dateStr(d){return d.toISOString().split('T')[0];}
 
-function chkList(cid, tasks, isSC){
-  const el=document.getElementById(cid); if(!el)return;
+// Call this whenever a checkbox changes — archives today's state
+function archiveToday(){
+  if(!S.history)S.history={};
+  const snap={};
+  [...LANG,...MOVE_ALL,...LEARN,...SC_Q].forEach(t=>{
+    snap[t.id]=S.checks[DS+'_'+t.id]?1:0;
+  });
+  // also store whether ANY movement happened
+  snap['_anyMove']=MOVE_ALL.some(t=>S.checks[DS+'_'+t.id])?1:0;
+  snap['_anyLang']=LANG.some(t=>S.checks[DS+'_'+t.id])?1:0;
+  snap['_anyLearn']=LEARN.some(t=>S.checks[DS+'_'+t.id])?1:0;
+  snap['_anyCare']=SC_Q.some(t=>S.checks[DS+'_'+t.id+'_sc'])?1:0;
+  S.history[DS]=snap;
+}
+
+// Calculate current streak for a habit id (or composite key like _anyMove)
+function calcStreak(habitId){
+  let streak=0;
+  const d=new Date(T);
+  while(true){
+    const k=dateStr(d);
+    const dayData=S.history[k];
+    if(!dayData||!dayData[habitId])break;
+    streak++;
+    d.setDate(d.getDate()-1);
+  }
+  return streak;
+}
+
+// Get array of 84 days (12 weeks) ending today, newest last
+function getLast84(){
+  const days=[];
+  for(let i=83;i>=0;i--){
+    const d=new Date(T);d.setDate(T.getDate()-i);
+    days.push(dateStr(d));
+  }
+  return days;
+}
+
+// ── Streak contribution grid ─────────────────────────────────────────
+function renderHabitGrid(containerId, habitId, label, color){
+  const el=document.getElementById(containerId);if(!el)return;
+  const days=getLast84();
+  const streak=calcStreak(habitId);
+  const total=days.filter(d=>S.history[d]&&S.history[d][habitId]).length;
+
+  // month labels — show month name when it changes, across 12 cols
+  const months=[];
+  let lastMonth=-1;
+  for(let col=0;col<12;col++){
+    const d=new Date(T);d.setDate(T.getDate()-(11-col)*7-T.getDay());
+    const m=d.getMonth();
+    months.push(m!==lastMonth?MO[m]:'');
+    lastMonth=m;
+  }
+
+  const cells=days.map(d=>{
+    const hit=S.history[d]&&S.history[d][habitId];
+    const lvl=hit?'h2':'';
+    return `<div class="hcell ${lvl}" title="${d}"></div>`;
+  }).join('');
+
+  el.innerHTML=`
+    <div class="streak-row">
+      <div><div class="streak-num">${streak}</div><div class="streak-lbl">day streak — ${label}</div></div>
+      <div style="text-align:right"><div class="streak-num">${total}</div><div class="streak-lbl">days in 12 weeks</div></div>
+    </div>
+    <div class="hlabels">${months.map(m=>`<div style="flex:1;text-align:center">${m}</div>`).join('')}</div>
+    <div class="hgrid-wrap"><div class="hgrid">${cells}</div></div>`;
+}
+
+function renderHistory(){
+  renderHabitGrid('hist-lang','_anyLang','any language','sage');
+  renderHabitGrid('hist-move','_anyMove','any movement','peach');
+  renderHabitGrid('hist-learn','_anyLearn','writing or reading','sky');
+  renderHabitGrid('hist-care','_anyCare','self care','rose');
+}
+
+// ── Today ─────────────────────────────────────────────────────────────
+function gk(id){return DS+'_'+id;}
+
+function chkList(cid,tasks,isSC){
+  const el=document.getElementById(cid);if(!el)return;
   el.innerHTML=tasks.map(t=>{
     const k=gk(t.id+(isSC?'_sc':''));
     const ch=isSC?S.scChecks[k]:S.checks[k];
@@ -559,25 +591,24 @@ function chkList(cid, tasks, isSC){
       <div style="flex:1"><div class="clbl${ch?' done':''}">${t.label}</div>${t.sub?`<div class="csub">${t.sub}</div>`:''}</div>
     </div>`;
   }).join('');
-  if(cid==='mt') updMvBadge();
+  if(cid==='mt')updMvBadge();
 }
 
 function updMvBadge(){
   const any=MOVE_ALL.some(t=>S.checks[gk(t.id)]);
   const b=document.getElementById('mv-badge');
-  if(b) b.style.color=any?'var(--sage-d)':'var(--txt3)';
+  if(b)b.style.color=any?'var(--sage-d)':'var(--txt3)';
 }
 
-function tog(id){   const k=gk(id);        S.checks[k]  =!S.checks[k];   save(); renderToday(); }
-function togSC(id){ const k=gk(id+'_sc');  S.scChecks[k]=!S.scChecks[k]; save(); renderCare(); }
-
-function miniG(id, hits, labels){
-  const el=document.getElementById(id); if(!el)return;
-  const L=labels||['M','T','W','T','F','S','S'];
-  el.innerHTML=L.map((l,i)=>`<div class="mc${i<hits?' hit':''}">${l}</div>`).join('');
+function tog(id){
+  const k=gk(id);S.checks[k]=!S.checks[k];
+  archiveToday();save();renderToday();
+}
+function togSC(id){
+  const k=gk(id+'_sc');S.scChecks[k]=!S.scChecks[k];
+  archiveToday();save();renderCare();
 }
 
-// ── Renderers ──────────────────────────────────────────────────────────
 function renderToday(){
   chkList('lt',LANG);
   chkList('mt',MOVE_ALL);
@@ -587,21 +618,24 @@ function renderToday(){
   const done=all.filter(t=>S.checks[gk(t.id)]).length;
   document.getElementById('dn').textContent=done;
   document.getElementById('tn').textContent=all.length;
-  document.getElementById('sn').textContent=S.streak;
+  // real streak from history
+  document.getElementById('cur-streak').textContent=calcStreak('_anyMove')||calcStreak('_anyLang')||0;
 }
 
+// ── Week ──────────────────────────────────────────────────────────────
 function renderWeek(){
   const gr=document.getElementById('wgrid');
   const start=new Date(T);
   start.setDate(T.getDate()-((T.getDay()+6)%7));
   let h='';
   for(let i=0;i<7;i++){
-    const d=new Date(start); d.setDate(start.getDate()+i);
+    const d=new Date(start);d.setDate(start.getDate()+i);
     const dw=WD[d.getDay()];
     const isT=d.toDateString()===T.toDateString();
     const fixed=(FIXED_EVS[dw]||[]).map(e=>`<div class="ev ${e.c}"><span class="ev-lbl">${e.n}</span></div>`).join('');
+    // show custom events: always show if repeat=true, or if added this week
     const cust=(S.custEvs[dw]||[]).map((e,ci)=>`<div class="ev ${e.c||'ev-l'}">
-      <span class="ev-lbl">${e.t?e.t+' ':''}${e.n}</span>
+      <span class="ev-lbl">${e.t?e.t+' ':''}${e.n}${e.repeat?' ↻':''}</span>
       <button class="ev-x" onclick="event.stopPropagation();rmEv('${dw}',${ci})">×</button>
     </div>`).join('');
     h+=`<div class="wday${isT?' tdc':''}"><div class="wdl">${dw}</div><div class="wdn">${d.getDate()}</div>${fixed}${cust}</div>`;
@@ -614,15 +648,21 @@ function addEv(){
   const name=document.getElementById('ev-name').value.trim();
   const col=document.getElementById('ev-col').value;
   const time=document.getElementById('ev-time').value.trim();
+  const repeat=document.getElementById('ev-repeat').checked;
   if(!name)return;
   if(!S.custEvs[day])S.custEvs[day]=[];
-  S.custEvs[day].push({n:name,c:col,t:time});
+  S.custEvs[day].push({n:name,c:col,t:time,repeat});
   document.getElementById('ev-name').value='';
   document.getElementById('ev-time').value='';
-  save(); renderWeek();
+  document.getElementById('ev-repeat').checked=false;
+  save();renderWeek();
 }
-function rmEv(day,idx){ S.custEvs[day].splice(idx,1); save(); renderWeek(); }
+function rmEv(day,idx){
+  S.custEvs[day].splice(idx,1);
+  save();renderWeek();
+}
 
+// ── Progress ──────────────────────────────────────────────────────────
 function espProgress(){
   const si=ESP_SECS.find(s=>s.sec===S.espSec)||ESP_SECS[0];
   const unitsDone=(S.espScore-si.min)*10+(S.espUnit-1);
@@ -639,7 +679,7 @@ function renderProgress(){
   document.getElementById('esp-gl').textContent=`Section ${S.espSec}: scores ${si.min}–${si.max} · ${done}/${total} units · ~${total-done} days at 1/day`;
   let msH='';
   for(let u=1;u<=10;u++){
-    const d2=u<S.espUnit, c=u===S.espUnit;
+    const d2=u<S.espUnit,c=u===S.espUnit;
     msH+=`<div class="ms${d2?' done':c?' cur':''}"><div class="msd"></div><div class="msl" style="flex:1">Unit ${u}/10 — score ${S.espScore}</div></div>`;
   }
   document.getElementById('esp-ms').innerHTML=msH;
@@ -648,14 +688,14 @@ function renderProgress(){
   document.getElementById('run-s').textContent=S.runWeeks.length;
   miniG('run-g',S.runWeeks.length,['W1','W2','W3','W4','W5','W6','W7']);
   ['nl1','nl2','nl3'].forEach((id,i)=>{
-    const max=[30,30,25][i]; const v=S[id]||0;
+    const max=[30,30,25][i];const v=S[id]||0;
     document.getElementById(id).value=v;
     document.getElementById(id+'-l').textContent=v+'/'+max;
     document.getElementById(id+'-b').style.width=Math.round(v/max*100)+'%';
   });
   document.getElementById('yoga-log').innerHTML=S.yogaLog.slice(-5).reverse().map(e=>`
     <div style="font-size:13px;padding:3px 0;border-bottom:0.5px solid var(--brd)">
-      <span style="color:var(--txt2)">${e.date}</span> — 
+      <span style="color:var(--txt2)">${e.date}</span> —
       ${e.url?`<a href="${e.url}" style="color:var(--sky-d);text-decoration:none">${e.label}</a>`:`<span>${e.label}</span>`}
     </div>`).join('');
   document.getElementById('bk-ct').textContent=S.bookLog.length;
@@ -664,43 +704,49 @@ function renderProgress(){
   document.getElementById('rd-log').innerHTML=S.readLog.slice(-5).reverse().map(e=>`<div style="font-size:13px;padding:4px 0;border-bottom:0.5px solid var(--brd)">${e.date} — <span style="color:var(--txt2)">${e.label}</span></div>`).join('');
 }
 
+function miniG(id,hits,labels){
+  const el=document.getElementById(id);if(!el)return;
+  const L=labels||['M','T','W','T','F','S','S'];
+  el.innerHTML=L.map((l,i)=>`<div class="mc${i<hits?' hit':''}">${l}</div>`).join('');
+}
+
 function espAdj(du,ds){
   let{espSec:sec,espScore:sc,espUnit:u}=S;
-  u+=du; if(u>10){u=1;sc++;} if(u<1){u=10;sc--;} sc+=ds;
+  u+=du;if(u>10){u=1;sc++;}if(u<1){u=10;sc--;}sc+=ds;
   const si=ESP_SECS.find(s=>s.sec===sec);
   if(si&&sc>si.max){const nx=ESP_SECS.find(s=>s.sec===sec+1);if(nx){sec=nx.sec;sc=nx.min;u=1;}else sc=si.max;}
   if(si&&sc<si.min){const pv=ESP_SECS.find(s=>s.sec===sec-1);if(pv){sec=pv.sec;sc=pv.max;u=10;}else{sc=si.min;u=1;}}
-  S.espSec=sec; S.espScore=sc; S.espUnit=u;
-  save(); renderProgress();
+  S.espSec=sec;S.espScore=sc;S.espUnit=u;save();renderProgress();
 }
 function markStreak(t){
   if(t==='fr'&&!S.frDays.includes(DS))S.frDays.push(DS);
   if(t==='run')S.runWeeks.push(DS);
-  save(); renderProgress();
+  save();renderProgress();
 }
 function updNL(){
   S.nl1=parseInt(document.getElementById('nl1').value)||0;
   S.nl2=parseInt(document.getElementById('nl2').value)||0;
   S.nl3=parseInt(document.getElementById('nl3').value)||0;
-  save(); renderProgress();
+  save();renderProgress();
 }
 function logYoga(){
-  const inp=document.getElementById('yoga-in'); const v=inp.value.trim(); if(!v)return;
+  const inp=document.getElementById('yoga-in');const v=inp.value.trim();if(!v)return;
   const d=WD[T.getDay()]+' '+MO[T.getMonth()]+' '+T.getDate();
   S.yogaLog.push({date:d,label:v.startsWith('http')?'Yoga session':v,url:v.startsWith('http')?v:''});
-  inp.value=''; save(); renderProgress();
+  inp.value='';save();renderProgress();
 }
 function logBook(){
   const w=document.getElementById('bk-w').value;
   S.bookLog.push({date:MO[T.getMonth()]+' '+T.getDate(),w:w||null});
-  document.getElementById('bk-w').value=''; save(); renderProgress();
+  document.getElementById('bk-w').value='';save();renderProgress();
 }
 function logRead(){
-  const i=document.getElementById('rd-in'); if(!i.value.trim())return;
+  const i=document.getElementById('rd-in');if(!i.value.trim())return;
   S.readLog.push({date:MO[T.getMonth()]+' '+T.getDate(),label:i.value.trim()});
-  i.value=''; save(); renderProgress();
+  i.value='';save();renderProgress();
 }
 
+// ── Quests ────────────────────────────────────────────────────────────
 function renderQuests(){
   const el=document.getElementById('qlist');
   el.innerHTML=S.quests.length?S.quests.map(q=>`<div class="qi">
@@ -709,10 +755,11 @@ function renderQuests(){
     <button class="dbtn" onclick="delQ(${q.id})">×</button>
   </div>`).join(''):'<div style="font-size:13px;color:var(--txt3);padding:8px 0">No active challenges</div>';
 }
-function addQ(){ const i=document.getElementById('q-in'); if(!i.value.trim())return; S.quests.push({id:Date.now(),name:i.value.trim(),active:true}); i.value=''; save(); renderQuests(); }
-function togQ(id){ const q=S.quests.find(q=>q.id===id); if(q)q.active=!q.active; save(); renderQuests(); }
-function delQ(id){ S.quests=S.quests.filter(q=>q.id!==id); save(); renderQuests(); }
+function addQ(){const i=document.getElementById('q-in');if(!i.value.trim())return;S.quests.push({id:Date.now(),name:i.value.trim(),active:true});i.value='';save();renderQuests();}
+function togQ(id){const q=S.quests.find(q=>q.id===id);if(q)q.active=!q.active;save();renderQuests();}
+function delQ(id){S.quests=S.quests.filter(q=>q.id!==id);save();renderQuests();}
 
+// ── Gym ────────────────────────────────────────────────────────────────
 function renderGym(){
   document.getElementById('gym-notes').value=S.gymN||'';
   document.getElementById('gym-opts').innerHTML=GYM_O.map(o=>`<label style="display:flex;align-items:center;gap:8px;padding:5px 0;font-size:14px;color:var(--but-d);cursor:pointer">
@@ -724,18 +771,20 @@ function renderGym(){
     <button class="dbtn" onclick="delGS(${i})">×</button>
   </div>`).join(''):'<div style="font-size:13px;color:var(--txt3);padding:8px 0">No sessions planned yet</div>';
 }
-function addGym(){ const i=document.getElementById('gym-in'); if(!i.value.trim())return; S.gymSess.push(i.value.trim()); i.value=''; save(); renderGym(); }
-function delGS(i){ S.gymSess.splice(i,1); save(); renderGym(); }
+function addGym(){const i=document.getElementById('gym-in');if(!i.value.trim())return;S.gymSess.push(i.value.trim());i.value='';save();renderGym();}
+function delGS(i){S.gymSess.splice(i,1);save();renderGym();}
 
+// ── Care ────────────────────────────────────────────────────────────────
 function renderCare(){
   const mkRow=(t)=>{
-    const k=gk(t.id+'_sc'); const ch=S.scChecks[k];
+    const k=gk(t.id+'_sc');const ch=S.scChecks[k];
     return `<div class="trow"><span style="font-size:14px">${t.label}</span><input type="checkbox" ${ch?'checked':''} onchange="togSC('${t.id}')" style="width:18px;height:18px;cursor:pointer;accent-color:var(--rose-b)"></div>`;
   };
   document.getElementById('sc-full').innerHTML=SC_F.map(mkRow).join('');
   document.getElementById('hm-full').innerHTML=HOME.map(mkRow).join('');
 }
 
+// ── Tab router ──────────────────────────────────────────────────────────
 function showTab(name,btn){
   document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
@@ -743,29 +792,25 @@ function showTab(name,btn){
   if(btn)btn.classList.add('on');
   if(name==='week')renderWeek();
   if(name==='today')renderToday();
+  if(name==='history')renderHistory();
   if(name==='progress')renderProgress();
   if(name==='quests')renderQuests();
   if(name==='gym')renderGym();
   if(name==='care')renderCare();
 }
+function renderAll(){renderWeek();renderToday();renderProgress();renderQuests();renderGym();renderCare();}
 
-function renderAll(){
-  renderWeek(); renderToday(); renderProgress(); renderQuests(); renderGym(); renderCare();
-}
-
-// ── Boot ───────────────────────────────────────────────────────────────
-const h=T.getHours();
-document.getElementById('gr').textContent=h<12?'good morning':h<18?'good afternoon':'good evening';
+// ── Boot ────────────────────────────────────────────────────────────────
+const hr=T.getHours();
+document.getElementById('gr').textContent=hr<12?'good morning':hr<18?'good afternoon':'good evening';
 document.getElementById('dc').textContent=WD[T.getDay()]+', '+MO[T.getMonth()]+' '+T.getDate();
 
-// Show token modal on first visit (no token stored yet)
-if(!GH.token || !GH.repo){
+if(!GH.token||!GH.repo){
   document.getElementById('overlay').classList.remove('hidden');
-  setSyncStatus('','not connected');
+  setSS('','not connected');
   renderAll();
-} else {
-  // Load from GitHub, then render
-  loadFromGitHub().then(()=>{ renderAll(); });
+}else{
+  loadFromGitHub().then(()=>renderAll());
 }
 </script>
 </body>
