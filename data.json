@@ -67,6 +67,11 @@
       "id": 2,
       "name": "Take stairs to 12th floor every workday",
       "active": true
+    },
+    {
+      "id": 1775312171202,
+      "name": "Test challange",
+      "active": true
     }
   ],
   "bookLog": [
