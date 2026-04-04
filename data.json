@@ -70,7 +70,12 @@
       "w": "245"
     }
   ],
-  "readLog": [],
+  "readLog": [
+    {
+      "date": "Apr 4",
+      "label": "Test book 1"
+    }
+  ],
   "gymN": "",
   "gymSess": [],
   "gymOpt": "",
