@@ -14,8 +14,8 @@
     "2026-04-04_yoga": true
   },
   "scChecks": {
-    "2026-04-04_sc_face_sc": false,
-    "2026-04-04_sc_body_sc": false,
+    "2026-04-04_sc_face_sc": true,
+    "2026-04-04_sc_body_sc": true,
     "2026-04-04_sc_nails_sc": false,
     "2026-04-04_sc_hair_sc": false,
     "2026-04-04_sc_water_sc": false
