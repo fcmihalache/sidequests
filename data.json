@@ -13,7 +13,9 @@
     "2026-04-04_xcore": false,
     "2026-04-04_yoga": true,
     "2026-04-04_salsa": false,
-    "2026-04-05_es": true
+    "2026-04-05_es": true,
+    "2026-04-05_swim": true,
+    "2026-04-05_run": true
   },
   "scChecks": {
     "2026-04-04_sc_face_sc": false,
@@ -197,9 +199,9 @@
       "fr": 0,
       "dutch": 0,
       "vball": 0,
-      "swim": 0,
+      "swim": 1,
       "xcore": 0,
-      "run": 0,
+      "run": 1,
       "gym": 0,
       "yoga": 0,
       "salsa": 0,
