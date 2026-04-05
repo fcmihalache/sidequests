@@ -12,7 +12,8 @@
     "2026-04-04_swim": false,
     "2026-04-04_xcore": false,
     "2026-04-04_yoga": true,
-    "2026-04-04_salsa": false
+    "2026-04-04_salsa": false,
+    "2026-04-05_es": true
   },
   "scChecks": {
     "2026-04-04_sc_face_sc": false,
@@ -162,6 +163,26 @@
       "_anyLang": 1,
       "_anyLearn": 0,
       "_anyCare": 1
+    },
+    "2026-04-05": {
+      "es": 1,
+      "fr": 0,
+      "dutch": 0,
+      "vball": 0,
+      "swim": 0,
+      "xcore": 0,
+      "run": 0,
+      "gym": 0,
+      "yoga": 0,
+      "salsa": 0,
+      "write": 0,
+      "read": 0,
+      "sc_body": 0,
+      "sc_face": 0,
+      "sc_nails": 0,
+      "_anyLang": 1,
+      "_anyLearn": 0,
+      "_anyCare": 0
     }
   },
   "streak": 3
