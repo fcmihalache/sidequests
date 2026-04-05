@@ -129,7 +129,14 @@
   },
   "custEvs": {
     "Mon": [],
-    "Tue": [],
+    "Tue": [
+      {
+        "n": "Day 1: Lower Body Strength & Hypertrophy",
+        "c": "eb",
+        "t": "",
+        "repeat": false
+      }
+    ],
     "Wed": [],
     "Thu": [
       {
@@ -139,9 +146,30 @@
         "repeat": false
       }
     ],
-    "Fri": [],
-    "Sat": [],
-    "Sun": []
+    "Fri": [
+      {
+        "n": "Day 2: Upper Body Strength & Hypertrophy",
+        "c": "eb",
+        "t": "",
+        "repeat": false
+      }
+    ],
+    "Sat": [
+      {
+        "n": "Day 4: Full Body Power",
+        "c": "eb",
+        "t": "",
+        "repeat": false
+      }
+    ],
+    "Sun": [
+      {
+        "n": "Day 6: Full Body Functional Muscle Building",
+        "c": "eb",
+        "t": "",
+        "repeat": false
+      }
+    ]
   },
   "history": {
     "2026-04-04": {
