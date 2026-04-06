@@ -136,14 +136,7 @@
     "Wed": [],
     "Thu": [],
     "Fri": [],
-    "Sat": [
-      {
-        "n": "Swimming lesson",
-        "c": "es",
-        "t": "13:45",
-        "repeat": true
-      }
-    ],
+    "Sat": [],
     "Sun": []
   },
   "history": {
