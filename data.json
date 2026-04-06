@@ -142,6 +142,12 @@
         "c": "es",
         "t": "17:00",
         "repeat": false
+      },
+      {
+        "n": "Swimming lesson",
+        "c": "es",
+        "t": "13:45",
+        "repeat": true
       }
     ],
     "Sun": []
