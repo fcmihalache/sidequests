@@ -137,7 +137,14 @@
     "Thu": [],
     "Fri": [],
     "Sat": [],
-    "Sun": []
+    "Sun": [
+      {
+        "n": "Swim Lesson",
+        "c": "es",
+        "t": "13:45",
+        "repeat": true
+      }
+    ]
   },
   "history": {
     "2026-04-04": {
